@@ -1,0 +1,38 @@
+name: Notify Discord on Pull Request
+
+on:
+  pull_request:
+    types: [opened, closed, reopened]
+    branches:
+      - main
+    
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          STATUS="opened"
+          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
+            STATUS="merged"
+          elif [[ "${{ github.event.action }}" == "closed" ]]; then
+            STATUS="closed"
+          fi
+
+          CAPITALIZED_STATUS=$(echo "${STATUS}" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')
+          curl -H "Content-Type: application/json" -X POST -d '{
+            "username": "GitHub Bot",
+            "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+            "embeds": [{
+              "title": "Pull Request '"$CAPITALIZED_STATUS"'",
+              "description": "[#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) - **${{ github.event.pull_request.title }}**",
+              "color": 3447003,
+              "fields": [
+                { "name": "Repository", "value": "${{ github.repository }}", "inline": true },
+                { "name": "Author", "value": "${{ github.event.pull_request.user.login }}", "inline": true }
+              ]
+            }]
+          }' $DISCORD_WEBHOOK
