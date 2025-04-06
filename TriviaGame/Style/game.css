@@ -1,0 +1,25 @@
+#GameZone
+{
+    width: 400px;
+    height: 400px;
+    box-sizing: border-box;
+    max-width: 800px;
+    max-height: 400px;
+    background-color: lightblue;
+    padding: 20px;
+}
+
+.answer-button
+{
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+}
+
+.answer-button:focus
+{
+    outline: 3px solid #007BFF;
+    background-color: #e0f0ff;
+}
