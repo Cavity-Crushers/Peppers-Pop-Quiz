@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Trivia Sprint - Game</title>
-    <link rel="stylesheet" href="style/game.css">
+    <link rel="stylesheet" href="Style/game.css" />
 </head>
 
 <body>
     <div id="GameZone">
+        <!-- Display the question here -->
+        <h1 id="questionText"></h1>
+
         <form action="index.html" method="GET">
             <div id="answers">
-                <button class="answer-button" type="submit">Answer A</button>
-                <button class="answer-button" type="submit">Answer B</button>
-                <button class="answer-button" type="submit">Answer C</button>
-                <button class="answer-button" type="submit">Answer D</button>
+                <!-- Give your buttons IDs or a shared class so they're easy to target in JS -->
+                <button class="answer-button" id="answer0" type="submit">Answer A</button>
+                <button class="answer-button" id="answer1" type="submit">Answer B</button>
+                <button class="answer-button" id="answer2" type="submit">Answer C</button>
+                <button class="answer-button" id="answer3" type="submit">Answer D</button>
             </div>
         </form>
     </div>
 
+    <!-- Load your scripts -->
     <script src="scripts/view.js"></script>
     <script src="scripts/main.js"></script>
 </body>
-
 </html>
