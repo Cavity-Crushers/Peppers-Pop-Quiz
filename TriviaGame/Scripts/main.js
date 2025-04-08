@@ -26,7 +26,7 @@ async function loadQuestionAndAnswers() {
         // 2. Fetch answer JSON
         const aResponse = await fetch(answerURL);
         const aData = await aResponse.json();
-        const answerObj = aData.answer.answers;
+        const answerObj = aData.answer[0];
 
         correctAnswer = answerObj.correct;
         const answers = answerObj.answers;
