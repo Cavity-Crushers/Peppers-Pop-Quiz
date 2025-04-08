@@ -3,7 +3,12 @@
 		{
 			"questionID": "q1",
 			"category": "ETSU",
-			"answers": [ "1911", "1923", "1917", "1968" ],
+			"answers": [
+				"1911",
+				"1923",
+				"1917",
+				"1968"
+			],
 			"correct": "1911"
 		},
 		{
@@ -20,7 +25,12 @@
 		{
 			"questionID": "q3",
 			"category": "ETSU",
-			"answers": [ "Brinkley Center", "Sam Wilson Hall", "Charles C. Sherrod Library", "The D. P. Culp Student Center" ],
+			"answers": [
+				"Brinkley Center",
+				"Sam Wilson Hall",
+				"Charles C. Sherrod Library",
+				"The D. P. Culp Student Center"
+			],
 			"correct": "The D. P. Culp Student Center"
 		},
 		{
