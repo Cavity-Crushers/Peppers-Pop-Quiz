@@ -18,7 +18,7 @@ async function loadQuestionAndAnswers() {
         const qResponse = await fetch(questionURL);
         const qData = await qResponse.json();
         // Suppose we only need the "history" > "q1"
-        const questionText = qData.question.questionText
+        const questionText = qData.question[0].questionText;
 
         // Put it in the <h1 id="questionText">
         document.getElementById('questionText').textContent = questionText;
