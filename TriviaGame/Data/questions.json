@@ -1,0 +1,24 @@
+{
+	"question": [
+		{
+			"questionID": "q1",
+			"category": "ETSU",
+			"questionText": "What year was ETSU founded?"
+		},
+		{
+			"questionID": "q2",
+			"category": "ETSU",
+			"questionText": "What was the previous name of the Brinkley Center?"
+		},
+		{
+			"questionID": "q3",
+			"category": "ETSU",
+			"questionText": "What is the name of the building with the dining hall and Buc Mart?"
+		},
+		{
+			"questionID": "q4",
+			"category": "ETSU",
+			"questionText": "Where did the name Pepper's Grill come from?"
+		}
+	]
+}
