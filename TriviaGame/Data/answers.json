@@ -1,54 +1,38 @@
 {
-	"answer": 
-	{
-		[
-			"ETSU"
-			{
-				"q1": {
-					"answers": [
-						"1911",
-						"1923",
-						"1917",
-						"1968"
-					],
-					"correct": "1911"
-				}
-			},
-			"ETSU"
-			{
-				"q2": {
-					"answers": [
-						"Millenial Building",
-						"Centeniall Hall",
-						"Millenium Center",
-						"Brinkley Center"
-					],
-					"correct": "Millenium Center"
-				}
-			},
-			"ETSU"
-			{
-				"q3": {
-					"answers": [
-						"Brinkley Center",
-						"Sam Wilson Hall",
-						"Charles C. Sherrod Library",
-						"The D. P. Culp Student Center"
-					],
-					"correct": "The D. P. Culp Student Center"
-				}
-			},
-			"ETSU" {
-				"q4": {
-					"answers": [
-						"Pepper the K9",
-						"Dr. Pepper",
-						"Salt and Pepper",
-						"Pepper the Cat"
-					],
-					"correct":  "Pepper the K9"
-				}
-			}
-		]
-	}
+	"answer": [
+		{
+			"questionID": "q1",
+			"category": "ETSU",
+			"answers": [ "1911", "1923", "1917", "1968" ],
+			"correct": "1911"
+		},
+		{
+			"questionID": "q2",
+			"category": "ETSU",
+			"answers": [
+				"Millenial Building",
+				"Centeniall Hall",
+				"Millenium Center",
+				"Brinkley Center"
+			],
+			"correct": "Millenium Center"
+		},
+		{
+			"questionID": "q3",
+			"category": "ETSU",
+			"answers": [ "Brinkley Center", "Sam Wilson Hall", "Charles C. Sherrod Library", "The D. P. Culp Student Center" ],
+			"correct": "The D. P. Culp Student Center"
+		},
+		{
+			"questionID": "q4",
+			"category": "ETSU",
+			"answers": [
+				"Pepper the K9",
+				"Dr. Pepper",
+				"Salt and Pepper",
+				"Pepper the Cat"
+			],
+			"correct": "Pepper the K9"
+		}
+	]
 }
