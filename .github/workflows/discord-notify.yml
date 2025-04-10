@@ -1,11 +1,12 @@
-name: Notify Discord on Pull Request
+name: Notify Discord on PR and Review
 
 on:
   pull_request:
     types: [opened, closed, reopened]
     branches:
       - main
-    
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   notify-discord:
@@ -15,24 +16,41 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          STATUS="opened"
-          if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
-            STATUS="merged"
-          elif [[ "${{ github.event.action }}" == "closed" ]]; then
-            STATUS="closed"
+          ACTION_TYPE="${{ github.event_name }}"
+          STATUS="unknown"
+          TITLE=""
+          DESCRIPTION=""
+          COLOR=3447003
+
+          if [[ "$ACTION_TYPE" == "pull_request" ]]; then
+            STATUS="opened"
+            if [[ "${{ github.event.pull_request.merged }}" == "true" ]]; then
+              STATUS="merged"
+            elif [[ "${{ github.event.action }}" == "closed" ]]; then
+              STATUS="closed"
+            fi
+
+            CAPITALIZED_STATUS=$(echo "${STATUS}" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')
+            TITLE="Pull Request $CAPITALIZED_STATUS"
+            DESCRIPTION="[#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) - **${{ github.event.pull_request.title }}**"
+          elif [[ "$ACTION_TYPE" == "pull_request_review" && "${{ github.event.review.state }}" == "approved" ]]; then
+            TITLE="Code Review Approved"
+            DESCRIPTION="[PR #${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) - **${{ github.event.pull_request.title }}**\nApproved by **${{ github.event.review.user.login }}**"
+            COLOR=3066993  # Green color for approval
+          else
+            echo "No action needed."
+            exit 0
           fi
 
-          CAPITALIZED_STATUS=$(echo "${STATUS}" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')
           curl -H "Content-Type: application/json" -X POST -d '{
             "username": "GitHub Bot",
             "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
             "embeds": [{
-              "title": "Pull Request '"$CAPITALIZED_STATUS"'",
-              "description": "[#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) - **${{ github.event.pull_request.title }}**",
-              "color": 3447003,
+              "title": "'"$TITLE"'",
+              "description": "'"$DESCRIPTION"'",
+              "color": '"$COLOR"',
               "fields": [
-                { "name": "Repository", "value": "${{ github.repository }}", "inline": true },
-                { "name": "Author", "value": "${{ github.event.pull_request.user.login }}", "inline": true }
+                { "name": "Repository", "value": "${{ github.repository }}", "inline": true }
               ]
             }]
           }' $DISCORD_WEBHOOK
