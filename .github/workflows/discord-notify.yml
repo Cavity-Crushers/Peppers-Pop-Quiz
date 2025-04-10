@@ -75,7 +75,8 @@ jobs:
               "description": "'"$DESCRIPTION"'",
               "color": '"$COLOR"',
               "fields": [
-                { "name": "Repository", "value": "'"${{ github.repository }}"'", "inline": true }
+                { "name": "Repository", "value": "'"${{ github.repository }}"'", "inline": true },
+                { "name": "Author", "value": "${{ github.event.pull_request.user.login }}", "inline": true }
               ]
             }]
           }' $DISCORD_WEBHOOK
