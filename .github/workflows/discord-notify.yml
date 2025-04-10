@@ -12,9 +12,13 @@ jobs:
   notify-discord:
     runs-on: ubuntu-latest
     steps:
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Send Discord Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ACTION_TYPE="${{ github.event_name }}"
           STATUS="unknown"
@@ -33,10 +37,31 @@ jobs:
             CAPITALIZED_STATUS=$(echo "${STATUS}" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')
             TITLE="Pull Request $CAPITALIZED_STATUS"
             DESCRIPTION="[#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) - **${{ github.event.pull_request.title }}**"
+
           elif [[ "$ACTION_TYPE" == "pull_request_review" && "${{ github.event.review.state }}" == "approved" ]]; then
-            TITLE="Code Review Approved"
-            DESCRIPTION="[PR #${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) - **${{ github.event.pull_request.title }}**\nApproved by **${{ github.event.review.user.login }}**"
-            COLOR=3066993  # Green color for approval
+            PR_NUMBER=${{ github.event.pull_request.number }}
+            REPO=${{ github.repository }}
+            TOKEN=${GITHUB_TOKEN}
+
+            # Fetch all reviews for the PR
+            REVIEWS_JSON=$(curl -s -H "Authorization: token $TOKEN" \
+              https://api.github.com/repos/$REPO/pulls/$PR_NUMBER/reviews)
+
+            # Count how many unique users have approved
+            APPROVERS=$(echo "$REVIEWS_JSON" | jq -r '.[] | select(.state=="APPROVED") | .user.login' | sort -u)
+            APPROVAL_COUNT=$(echo "$APPROVERS" | wc -l)
+
+            # Set how many total approvals are required (customize this!)
+            REQUIRED_APPROVALS=2
+
+            TITLE="Code Review ${APPROVAL_COUNT}/${REQUIRED_APPROVALS} Approved"
+            DESCRIPTION="[PR #$PR_NUMBER](${{ github.event.pull_request.html_url }}) - **${{ github.event.pull_request.title }}**\nApproved by **${{ github.event.review.user.login }}**"
+            COLOR=3066993
+
+            # Optional: Special message when all approvals are in
+            if [[ "$APPROVAL_COUNT" -ge "$REQUIRED_APPROVALS" ]]; then
+              DESCRIPTION="$DESCRIPTION\n\n✅ **All reviews approved! Ready to merge.**"
+            fi
           else
             echo "No action needed."
             exit 0
@@ -45,12 +70,12 @@ jobs:
           curl -H "Content-Type: application/json" -X POST -d '{
             "username": "GitHub Bot",
             "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-            "embeds": [{
+            "embeds": [ {
               "title": "'"$TITLE"'",
               "description": "'"$DESCRIPTION"'",
               "color": '"$COLOR"',
               "fields": [
-                { "name": "Repository", "value": "${{ github.repository }}", "inline": true }
+                { "name": "Repository", "value": "'"${{ github.repository }}"'", "inline": true }
               ]
             }]
           }' $DISCORD_WEBHOOK
