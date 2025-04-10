@@ -1,5 +1,9 @@
-#GameZone
-{
+/**
+ * Used to limit the game zone to a specific size and style for the game.
+ * 
+ * #ID GameZone
+ */
+#GameZone {
     width: 400px;
     height: 400px;
     box-sizing: border-box;
@@ -9,8 +13,12 @@
     padding: 20px;
 }
 
-.answer-button
-{
+/**
+ * Styles the answer buttons with spacing, size, and font settings.
+ * 
+ * .class answer-button
+ */
+.answer-button {
     display: block;
     margin: 10px 0;
     padding: 10px;
@@ -18,8 +26,12 @@
     font-size: 16px;
 }
 
-.answer-button:focus
-{
-    outline: 3px solid #007BFF;
-    background-color: #e0f0ff;
-}
+/**
+ * Adds focus styling to selected answer buttons.
+ * 
+ * .class answer-button:focus
+ */
+    .answer-button:focus {
+        outline: 3px solid #007BFF;
+        background-color: #e0f0ff;
+    }

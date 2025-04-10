@@ -7,7 +7,8 @@
  * 
  * @returns {void} This function does not return any values.
  */
-function toggleView() {
+function toggleView()
+{
     const zone = document.getElementById("GameZone");
 
     if (zone.style.width === "800px") {
@@ -29,7 +30,8 @@ function toggleView() {
  * 
  * @returns {void} This function does not return a value.
  */
-function saveGameViewSize() {
+function saveGameViewSize()
+{
     const gameZone = document.getElementById('GameZone');
     const width = gameZone.offsetWidth;
     const height = gameZone.offsetHeight;
@@ -52,7 +54,8 @@ window.onbeforeunload = saveGameViewSize;
  * 
  * @returns {void} This function does not return a value
  */
-function restoreGameViewSize() {
+function restoreGameViewSize()
+{
     const gameZone = document.getElementById('GameZone');
     const savedWidth = localStorage.getItem('gameZoneWidth');
     const savedHeight = localStorage.getItem('gameZoneHeight');
