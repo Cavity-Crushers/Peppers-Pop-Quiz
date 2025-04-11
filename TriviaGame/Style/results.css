@@ -1,0 +1,9 @@
+#GameZone {
+    width: 400px;
+    height: 400px;
+    box-sizing: border-box;
+    max-width: 800px;
+    max-height: 400px;
+    background-color: lightblue;
+    padding: 20px;
+}

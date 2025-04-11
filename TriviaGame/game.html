@@ -11,13 +11,13 @@
         <!-- Display the question here -->
         <h1 id="questionText"></h1>
 
-        <form action="index.html" method="GET">
+        <form action="results.html" method="GET">
             <div id="answers">
                 <!-- Give your buttons IDs or a shared class so they're easy to target in JS -->
-                <button class="answer-button" id="answer0" type="submit">Answer A</button>
-                <button class="answer-button" id="answer1" type="submit">Answer B</button>
-                <button class="answer-button" id="answer2" type="submit">Answer C</button>
-                <button class="answer-button" id="answer3" type="submit">Answer D</button>
+                <button class="answer-button" id="answer0" type="submit" onclick="checkAnswer(answer0.textContent)">Answer A</button>
+                <button class="answer-button" id="answer1" type="submit" onclick="checkAnswer(answer1.textContent)">Answer B</button>
+                <button class="answer-button" id="answer2" type="submit" onclick="checkAnswer(answer2.textContent)">Answer C</button>
+                <button class="answer-button" id="answer3" type="submit" onclick="checkAnswer(answer3.textContent)">Answer D</button>
             </div>
         </form>
     </div>

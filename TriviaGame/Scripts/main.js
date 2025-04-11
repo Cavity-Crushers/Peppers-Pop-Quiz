@@ -8,9 +8,11 @@ const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
 const questionId = 0;
 
-// We�ll store references to the buttons and correct answer globally
+// We'll store references to the buttons, correct answer, selected answer (and maybe score and lives) globally
 let buttons = [];
 let correctAnswer = '';
+let chosenAnswer = '';
+let correct = '';
 
 // This function fetches JSON data, updates the DOM with question/answers
 async function loadQuestionAndAnswers() {
@@ -18,7 +20,6 @@ async function loadQuestionAndAnswers() {
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
         const qData = await qResponse.json();
-        // Suppose we only need the "history" > "q1"
         const questionText = qData.question[questionId].questionText;
 
         // Put it in the <h1 id="questionText">
@@ -40,22 +41,34 @@ async function loadQuestionAndAnswers() {
             }
         }
 
-        // 4. (Optional) Attach a click listener to each button, so we can check correctness
-        buttons.forEach((btn) => {
-            btn.addEventListener('click', (event) => {
-                // If you don't want the form to submit:
-                event.preventDefault();
-
-                if (btn.textContent === correctAnswer) {
-                    alert('Correct!');
-                } else {
-                    alert('Wrong!');
-                }
-            });
-        });
-
+        
     } catch (err) {
         console.error('Error loading question or answers:', err);
+    }
+}
+
+/**
+ * Used to store the answer selected and check its correctness.
+ * 
+ * @param {any} answerText - Text for the answer choice associated to the button clicked
+ */
+async function checkAnswer(answerText) {
+    /**
+     * Prevents you from going to the results page but can be used to check chosenAnswer and correct's values via the 
+     * inspect menu console when running the server.
+     * Comment out when not using to test chosenAnswer and correct.
+     */  
+    //event.preventDefault();
+
+    chosenAnswer = answerText;
+
+    if (chosenAnswer === correctAnswer)
+    {
+        correct = "Correct!";
+    }
+    else
+    {
+        correct = "Wrong!"
     }
 }
 
@@ -63,7 +76,7 @@ async function loadQuestionAndAnswers() {
 /********************************************
  * 2) ARROW-KEY NAVIGATION (YOUR CURRENT CODE)
  ********************************************/
-// We�ll call this after the DOM is fully loaded
+// We'll call this after the DOM is fully loaded
 function setupNavigation() {
     // Grab all the answer buttons
     buttons = document.querySelectorAll('.answer-button');
