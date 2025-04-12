@@ -52,13 +52,6 @@ async function loadQuestionAndAnswers() {
  * @param {any} answerText - Text for the answer choice associated to the button clicked
  */
 async function checkAnswer(answerText) {
-    /**
-     * Prevents you from going to the results page but can be used to check chosenAnswer and correct's values via the 
-     * inspect menu console when running the server.
-     * Comment out when not using.
-     */  
-    //event.preventDefault();
-
     localStorage.setItem('selectedAnswer', answerText);
     
     if (chosenAnswer === correctAnswer)
