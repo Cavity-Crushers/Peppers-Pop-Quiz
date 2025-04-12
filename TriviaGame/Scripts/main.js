@@ -11,7 +11,6 @@ const questionId = 0;
 // We'll store references to the buttons, correct answer, selected answer (and maybe score and lives) globally
 let buttons = [];
 let correctAnswer = '';
-let chosenAnswer = '';
 let correct = '';
 
 // This function fetches JSON data, updates the DOM with question/answers
@@ -56,12 +55,12 @@ async function checkAnswer(answerText) {
     /**
      * Prevents you from going to the results page but can be used to check chosenAnswer and correct's values via the 
      * inspect menu console when running the server.
-     * Comment out when not using to test chosenAnswer and correct.
+     * Comment out when not using.
      */  
     //event.preventDefault();
 
-    chosenAnswer = answerText;
-
+    localStorage.setItem('selectedAnswer', answerText);
+    
     if (chosenAnswer === correctAnswer)
     {
         correct = "Correct!";
@@ -70,6 +69,8 @@ async function checkAnswer(answerText) {
     {
         correct = "Wrong!"
     }
+
+    localStorage.setItem('correct', correct);
 }
 
 
