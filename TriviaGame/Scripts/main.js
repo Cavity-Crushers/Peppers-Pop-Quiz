@@ -54,7 +54,7 @@ async function loadQuestionAndAnswers() {
 async function checkAnswer(answerText) {
     localStorage.setItem('selectedAnswer', answerText);
     
-    if (chosenAnswer === correctAnswer)
+    if (answerText === correctAnswer)
     {
         correct = "Correct!";
     }
