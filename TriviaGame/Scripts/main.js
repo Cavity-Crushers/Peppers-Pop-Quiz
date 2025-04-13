@@ -46,6 +46,18 @@ async function loadQuestionAndAnswers() {
     }
 }
 
+// We’ll track the player’s lives and consecutive correct answers
+function initializeGameData() {
+    // If we have never stored lives, set them to 3. Otherwise, keep what’s in storage
+    if (!localStorage.getItem('lives')) {
+        localStorage.setItem('lives', '3');
+    }
+    // If we have never stored consecutiveCorrect, set it to 0
+    if (!localStorage.getItem('consecutiveCorrect')) {
+        localStorage.setItem('consecutiveCorrect', '0');
+    }
+}
+
 /**
  * Used to store the answer selected and check its correctness.
  * 
@@ -64,8 +76,37 @@ async function checkAnswer(answerText) {
     }
 
     localStorage.setItem('correct', correct);
+    // Now update lives & consecutive correct count
+    updateLivesAndConsecutive(correctAnswer === answerText);
 }
 
+
+
+// Increments or decrements lives, updates consecutive correct logic
+function updateLivesAndConsecutive(isCorrect) {
+    let lives = parseInt(localStorage.getItem('lives'), 10);
+    let consecutiveCorrect = parseInt(localStorage.getItem('consecutiveCorrect'), 10);
+
+    if (isCorrect) {
+        consecutiveCorrect++;
+        // If the user hits 3 in a row, earn a life (max 5) and reset consecutive count
+        if (consecutiveCorrect === 3) {
+            if (lives < 5) {
+                lives++;
+            }
+            consecutiveCorrect = 0; // reset after awarding the life
+        }
+    } else {
+        // Wrong answer => lose 1 life
+        lives--;
+        // reset consecutive correct
+        consecutiveCorrect = 0;
+    }
+
+    // Save updated values
+    localStorage.setItem('lives', lives.toString());
+    localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
+}
 
 /********************************************
  * 2) ARROW-KEY NAVIGATION (YOUR CURRENT CODE)
@@ -107,6 +148,9 @@ function setupNavigation() {
  * 3) INIT EVERYTHING WHEN PAGE LOADS
  ********************************************/
 window.addEventListener('DOMContentLoaded', () => {
+    // Make sure we have lives/consecutive in localStorage
+    initializeGameData();
+
     // First, set up arrow key navigation
     setupNavigation();
 
