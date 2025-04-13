@@ -7,11 +7,13 @@
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
 const questionId = 0;
+var correct = '';
+var score = 0;
 
-// We'll store references to the buttons, correct answer, selected answer (and maybe score and lives) globally
+// We'll store references to the buttons, correct answer
 let buttons = [];
 let correctAnswer = '';
-let correct = '';
+//let correct = '';
 
 // This function fetches JSON data, updates the DOM with question/answers
 async function loadQuestionAndAnswers() {
@@ -57,6 +59,7 @@ async function checkAnswer(answerText) {
     if (answerText === correctAnswer)
     {
         correct = "Correct!";
+        score += 50;
     }
     else
     {
@@ -64,6 +67,7 @@ async function checkAnswer(answerText) {
     }
 
     localStorage.setItem('correct', correct);
+    localStorage.setItem('score', score);
 }
 
 

@@ -1,14 +1,18 @@
 // results.js
 
-// Gets these 2 values that were stored in main.js
+// Gets these 3 values that were stored in main.js
 const selectedAnswer = localStorage.getItem('selectedAnswer');
 const correctness = localStorage.getItem('correct');
+const score = localStorage.getItem('score');
 
 // Sets <h2 id="selectedAnswer"> to the answer selected on the game page
 document.getElementById('selectedAnswer').textContent = selectedAnswer;
 
 // Sets <h1 id="correct"> to "Correct!" or "Wrong!" based on correctness of answer selected
 document.getElementById('correct').textContent = correctness;
+
+// Sets <h2 id="score"> to the score
+document.getElementById('score').textContent = score;
 
 /**
  * Takes the player back to the game page
