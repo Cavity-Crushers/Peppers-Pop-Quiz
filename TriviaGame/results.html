@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="author" content="JL Graham">
     <meta name="date" content="2025-04-09">
-    <meta name="last revised" content="2024-04-11">
+    <meta name="last revised" content="2024-04-13">
     <meta name="description" content="SE1 Sprint 2 Results Page">
     <meta name="keywords" content="se1, sprint 2, results page">
     <title>Trivia Sprint - Results</title>
@@ -13,28 +13,27 @@
     <!-- results.html
      Author: JL Graham
      Date: 04/09/24
-     Last Revised: 04/11/24
+     Last Revised: 04/13/24
      Description: Results page that appears after answering a question
      -->
 
 </head>
 <body>
     <div id="GameZone">
-        <!-- Display the question here -->
-        <h1 id="questionText"></h1>
+        <h2 id="questionText"></h2>
 
-        <!-- Selected Answer -->
         <h2 id="selectedAnswer"></h2>
 
-        <!-- Correct/Incorrect -->
         <h1 id="correct"></h1>
+
         <!-- Score (Increment by 50 if correct, otherwise just display) -->
+        <h1 id="score"></h1>
         <!-- Lives (for Luke's task) -->
         <h2 id="lives"></h2>
         <!-- Button to quit and button to continue next to each other -->
         <div class="button-container">
-            <button type="button" onclick="goToHome()">Quit</button>
-            <button type="button" onclick="goToGame()">Continue</button>
+            <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
+            <button class="redirection-button" type="button" onclick="goToGame()">Continue</button>
         </div>
     </div>
 
