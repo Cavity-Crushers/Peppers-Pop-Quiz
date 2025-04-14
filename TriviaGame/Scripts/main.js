@@ -1,22 +1,18 @@
 ﻿// main.js
 
-/********************************************
- * 1) FETCH & DISPLAY THE QUESTION/ANSWERS  *
- ********************************************/
-// Paths to your JSON files (adjust if needed)
+// Get the file paths of our questions and answers
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
 const questionId = 0;
-//var correct = '';
-//var gameScore = 0;
 
-// We'll store references to the buttons, correct answer
+// We'll store references to the buttons, correct answer, and correctness
 let buttons = [];
 let correctAnswer = '';
 let correct = '';
-let gameScore = 0;
 
-// This function fetches JSON data, updates the DOM with question/answers
+/**
+ * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page
+ */
 async function loadQuestionAndAnswers() {
     try {
         // 1. Fetch question JSON
@@ -42,14 +38,15 @@ async function loadQuestionAndAnswers() {
                 btn.textContent = answers[i];
             }
         }
-
         
     } catch (err) {
         console.error('Error loading question or answers:', err);
     }
 }
 
-// We’ll track the player’s lives and consecutive correct answers
+/**
+ * Initializes the integer values that change between questions at the beginning of the game
+ */
 function initializeGameData() {
     // If we have never stored lives, set them to 3. Otherwise, keep what’s in storage
     if (!localStorage.getItem('lives')) {
@@ -59,6 +56,12 @@ function initializeGameData() {
     if (!localStorage.getItem('consecutiveCorrect')) {
         localStorage.setItem('consecutiveCorrect', '0');
     }
+    // If we have never stored score, set it to 0
+    if (!localStorage.getItem('score'))
+    {
+        localStorage.setItem('score', '0');
+    }
+
 }
 
 /**
@@ -67,28 +70,32 @@ function initializeGameData() {
  * @param {any} answerText - Text for the answer choice associated to the button clicked
  */
 async function checkAnswer(answerText) {
+    var gameScore = parseInt(localStorage.getItem('score'), 10)
     localStorage.setItem('selectedAnswer', answerText);
     
     if (answerText === correctAnswer)
     {
         correct = "Correct!";
         gameScore += 50;
-        localStorage.setItem('score', gameScore);
     }
     else
     {
-        correct = "Wrong!"
-        localStorage.setItem('score', gameScore);
+        correct = "Wrong!";
     }
 
     localStorage.setItem('correct', correct);
+    localStorage.setItem('score', gameScore.toString());
     // Now update lives & consecutive correct count
     updateLivesAndConsecutive(correctAnswer === answerText);
 }
 
 
 
-// Increments or decrements lives, updates consecutive correct logic
+/**
+ * Increments or decrements the player's lives based on how they anwer questions
+ * 
+ * @param {any} isCorrect - Did the player answer the question correctly
+ */
 function updateLivesAndConsecutive(isCorrect) {
     let lives = parseInt(localStorage.getItem('lives'), 10);
     let consecutiveCorrect = parseInt(localStorage.getItem('consecutiveCorrect'), 10);
@@ -114,10 +121,12 @@ function updateLivesAndConsecutive(isCorrect) {
     localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
 }
 
-/********************************************
- * 2) ARROW-KEY NAVIGATION (YOUR CURRENT CODE)
- ********************************************/
-// We'll call this after the DOM is fully loaded
+/**
+ * Allows for players to select answers with the arrow keys by moving up and down and
+ * pressing the "ENTER" key to select an answer
+ * 
+ * @returns In case no buttons are found it immediately returns
+ */
 function setupNavigation() {
     // Grab all the answer buttons
     buttons = document.querySelectorAll('.answer-button');
@@ -150,9 +159,9 @@ function setupNavigation() {
 }
 
 
-/********************************************
- * 3) INIT EVERYTHING WHEN PAGE LOADS
- ********************************************/
+/**
+ * Calls all of the functions that do not run on answer selection to initialize all variables
+ */
 window.addEventListener('DOMContentLoaded', () => {
     // Make sure we have lives/consecutive in localStorage
     initializeGameData();

@@ -20,9 +20,9 @@ document.getElementById('lives').textContent = `Lives: ${lives}`;
 if (parseInt(lives, 10) <= 0) {
     window.location.href = './gameover.html';
 }
+
 // Sets <h1 id="score"> to the score
 document.getElementById('score').textContent = score;
-
 
 /**
  * Takes the player back to the game page
@@ -33,9 +33,10 @@ async function goToGame()
 }
 
 /**
- * Takes the player back to the home page
+ * Takes the player back to the home page and clears the
  */
 async function goToHome()
 {
     window.location.href = './index.html';
+    localStorage.clear();
 }
