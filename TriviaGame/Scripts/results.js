@@ -6,7 +6,6 @@ var correctness = localStorage.getItem('correct');
 var score = localStorage.getItem('score');
 const lives = localStorage.getItem('lives');
 
-
 // Sets <h2 id="selectedAnswer"> to the answer selected on the game page
 document.getElementById('selectedAnswer').textContent = selectedAnswer;
 
@@ -40,3 +39,32 @@ async function goToHome()
     window.location.href = './index.html';
     localStorage.clear();
 }
+
+/**
+ * Used to play the game over sound effect when a user selects a answer
+ * 
+ * @param {any} resultAudio - Audio for user feedback
+ */
+let resultAudio;
+
+function playResultSoundEffects() {
+    // Only create the audio element once
+
+    if (!resultAudio && correctness == "Correct!") {
+        resultAudio = new Audio("https://cdn.freesound.org/previews/644/644953_8358230-lq.mp3");
+        resultAudio.type = "audio/mpeg";
+    }
+    else if (!resultAudio && correctness == "Wrong!") {
+        resultAudio = new Audio("https://cdn.freesound.org/previews/253/253886_3169537-lq.mp3");
+        resultAudio.type = "audio/mpeg";
+    }
+
+    resultAudio.play().catch(e => {
+        console.error("Playback failed:", e);
+    });
+}
+
+//This waits for the content to fully load before the sound effect is played
+window.addEventListener("DOMContentLoaded", () => {       
+    playResultSoundEffects();
+});
