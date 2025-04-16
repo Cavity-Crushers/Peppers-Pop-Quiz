@@ -19,6 +19,91 @@
 			"questionID": "q4",
 			"category": "ETSU",
 			"questionText": "Where did the name Pepper's Grill come from?"
+		},
+		{
+			"questionID": "q5",
+			"category": "ETSU",
+			"questionText": "What are our sports teams named?"
+		},
+		{
+			"questionID": "q6",
+			"category": "Gaming",
+			"questionText": "When did the Nintendo GameCube come out in North America?"
+		},
+		{
+			"questionID": "q7",
+			"category": "Kinser",
+			"questionText": "What language was Kinser's first program made for money written in?"
+		},
+		{
+			"questionID": "q8",
+			"category": "Kinser",
+			"questionText": "What company did Kinser land his first professional programmer job with?"
+		},
+		{
+			"questionID": "q9",
+			"category": "Scrum",
+			"questionText": "What is the Definition of Done?"
+		},
+		{
+			"questionID": "q10",
+			"category": "Scrum",
+			"questionText": "What is the job of the Scrum Master?"
+		},
+		{
+			"questionID": "q11",
+			"category": "ETSU",
+			"questionText": "What game is played by ETSU Esports?"
+		},
+		{
+			"questionID": "q12",
+			"category": "Chemistry",
+			"questionText": "What is the boiling point of water?"
+		},
+		{
+			"questionID": "q13",
+			"category": "Chemistry",
+			"questionText": "What type of bond is formed when electrons are shared between two atoms?"
+		},
+		{
+			"questionID": "q14",
+			"category": "John Ramsey",
+			"questionText": "What is Ramsey's favorite Red Lobster food item?"
+		},
+		{
+			"questionID": "q15",
+			"category": "John Ramsey",
+			"questionText": "What was Ramsey's job before being a ETSU Professor?"
+		},
+		{
+			"questionID": "q16",
+			"category": "Gaming",
+			"questionText": "What was the game of the year in 2015?"
+		},
+		{
+			"questionID": "q17",
+			"category": "Gaming",
+			"questionText": "What is the best-selling game of all time? (By Copies Sold)"
+		},
+		{
+			"questionID": "q18",
+			"category": "Gaming",
+			"questionText": "Who is the developer of Balatro?"
+		},
+		{
+			"questionID": "q19",
+			"category": "Movies",
+			"questionText": "Who plays Professor Paul Hunham in The Holdovers (2023)?"
+		},
+		{
+			"questionID": "q20",
+			"category": "Movies",
+			"questionText": "Who is the actor in the leading role of Sing Sing (2023)?"
+		},
+		{
+			"questionID": "q21",
+			"category": "Movies and TV",
+			"questionText": "Who is the director of Netflix shows The Haunting of Hill House, The Haunting of Bly Manor, Midnight Mass, and The Fall of the House of Usher?"
 		}
 	]
 }
