@@ -3,12 +3,12 @@
 // Get the file paths of our questions and answers
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
-const questionId = 0;
 
-// We'll store references to the buttons, correct answer, and correctness
+// We'll store references to the buttons, correct answer, correctness, and questionID
 let buttons = [];
 let correctAnswer = '';
 let correct = '';
+let questionId = 0;
 
 /**
  * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page
