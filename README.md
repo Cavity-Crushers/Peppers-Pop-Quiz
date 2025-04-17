@@ -1,6 +1,6 @@
-# CSCI-4250 Scrump Project - Pepper's Pop Quiz by Cavity Crushers
+# CSCI-4250 Scrum Project - Pepper's Pop Quiz by Cavity Crushers
 
-Pepper's Pop Quiz is trivia game developed by Cavity Crushers, inspired by popular trivia games but with an ETSU twist. Our game features ETSU's therapy dog Pepper, which the game is named after. This project was created in CSCI 4250-001/Software Engineering 1 in Spring 2025 using the Scrum methodology with most of the group having little to no experience with JavaScript.
+Pepper's Pop Quiz is trivia game developed by Cavity Crushers, inspired by popular trivia games but with an ETSU twist. Our game features ETSU's therapy dog Pepper, which the game is named after. This project was created in CSCI 4250-002/Software Engineering 1 in Spring 2025 using the Scrum methodology with most of the group having little to no experience with JavaScript.
 
 Our team members and their respective roles are as following:  
   - Landen Rogers     - Product Owner
@@ -9,7 +9,8 @@ Our team members and their respective roles are as following:
   * Luke Weist        - Developer
   - JL Graham         - Developer
 
-Our product backlog along with all of our sprint backlogs are included under the "Projects" section of this repository (https://github.com/Cavity-Crushers/Peppers-Pop-Quiz/projects?query=is%3Aopen).
+Our product backlog along with all of our sprint backlogs are included under the "Projects" section of this repository, or at this link:  
+https://github.com/Cavity-Crushers/Peppers-Pop-Quiz/projects?query=is%3Aopen
 
 # Sprint Overviews  
 Sprint 1 -
@@ -33,6 +34,10 @@ Sprint 3 -
 - Goal: TODO
   - Show different questions ...
  
+# Releases
+We did a release at the end of each sprint and they can be found on the right side Code page of the repository, or at this link:  
+https://github.com/Cavity-Crushers/Peppers-Pop-Quiz/releases
+ 
 # Process to Test our Project
 If you already have Node.js installed, skip to step 3.
 1. Go to https://nodejs.org in your browser and download the Long Term Support version if you do not already have Node.js installed.
@@ -54,7 +59,7 @@ We plan to implement Selenium testing in our final sprint to automate our testin
 Coding Standard:  
 https://docs.google.com/document/d/1K2XEdV4LqyqNNV5kEDSuZfxaoWGdsPhmndt-g0EaSmo/edit?usp=sharing
 
-Designs -
+Designs:
 - Architectural:  
 https://lucid.app/lucidchart/1c5341f9-08d4-4fa4-b6ad-8dc7706524bc/edit?viewport_loc=-292%2C-11%2C1657%2C969%2C0_0&invitationId=inv_5531f77e-6190-4695-a3c4-5dfe66717f15
 
