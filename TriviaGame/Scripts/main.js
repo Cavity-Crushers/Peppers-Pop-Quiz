@@ -3,7 +3,7 @@
 // Get the file paths of our questions and answers
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
-const questionId = 0;
+const questionId = 16;
 
 // We'll store references to the buttons, correct answer, and correctness
 let buttons = [];
@@ -18,15 +18,19 @@ async function loadQuestionAndAnswers() {
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
         const qData = await qResponse.json();
-        const questionText = qData.question[questionId].questionText;
+        const questionText = qData.question[questionId - 1].questionText;
+        const questionImageAddress = qData.question[questionId - 1].questionImageAddress;
+        const questionDescription = qData.question[questionId - 1].questionDescription;
 
         // Put it in the <h1 id="questionText">
         document.getElementById('questionText').textContent = questionText;
+        document.getElementById('questionImage').src = questionImageAddress;
+        document.getElementById('questionImage').alt = questionDescription;
 
         // 2. Fetch answer JSON
         const aResponse = await fetch(answerURL);
         const aData = await aResponse.json();
-        const answerObj = aData.answer[questionId];
+        const answerObj = aData.answer[questionId - 1];
 
         correctAnswer = answerObj.correct;
         const answers = answerObj.answers;
