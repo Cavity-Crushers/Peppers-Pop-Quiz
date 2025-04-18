@@ -32,7 +32,7 @@ async function goToGame()
 }
 
 /**
- * Takes the player back to the home page and clears the
+ * Takes the player back to the home page and clears their progress from that run
  */
 async function goToHome()
 {

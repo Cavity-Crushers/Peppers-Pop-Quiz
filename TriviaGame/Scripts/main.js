@@ -4,6 +4,7 @@
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
 
+
 // We'll store references to the buttons, correct answer, correctness, and questionID
 let buttons = [];
 let correctAnswer = '';
@@ -11,7 +12,7 @@ let correct = '';
 let questionId = 0;
 
 /**
- * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page
+ * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page.
  */
 async function loadQuestionAndAnswers() {
     try {
@@ -45,7 +46,8 @@ async function loadQuestionAndAnswers() {
 }
 
 /**
- * Initializes the integer values that change between questions at the beginning of the game
+ * Initializes the integer values that change between questions at the beginning of the game.
+ * Otherwise score would not have a value displayed if the player answered a question wrong to start.
  */
 function initializeGameData() {
     // If we have never stored lives, set them to 3. Otherwise, keep what’s in storage
@@ -65,7 +67,9 @@ function initializeGameData() {
 }
 
 /**
- * Used to store the answer selected and check its correctness.
+ * Uses localStorage to store the answer selected, its correctness, and score, because otherwise
+ * the value wouldn't transfer between files. Local storage stores everything as strings so you 
+ * have to parse score to an int and then convert that int to a string when you store it back.
  * 
  * @param {any} answerText - Text for the answer choice associated to the button clicked
  */
@@ -123,7 +127,8 @@ function updateLivesAndConsecutive(isCorrect) {
 
 /**
  * Allows for players to select answers with the arrow keys by moving up and down and
- * pressing the "ENTER" key to select an answer
+ * pressing the "ENTER" key to select an answer to allow for more controls when playing
+ * on a laptop
  * 
  * @returns In case no buttons are found it immediately returns
  */
