@@ -10,7 +10,17 @@
     max-width: 800px;
     max-height: 400px;
     background-color: lightblue;
-    padding: 20px;
+    padding: 5px;
+}
+
+/**
+ * Used to change the styling of the question's image.
+ * 
+ * #ID questionImage
+ */
+#questionImage {
+    max-width: 115px;
+    max-height: 115px;
 }
 
 /**
@@ -23,7 +33,7 @@
     margin: 10px 0;
     padding: 10px;
     width: 200px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 /**
