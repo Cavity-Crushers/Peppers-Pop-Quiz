@@ -2,7 +2,6 @@
 	"answer": [
 		{
 			"questionID": "q1",
-			"category": "ETSU",
 			"answers": [
 				"1911",
 				"1923",
@@ -13,7 +12,6 @@
 		},
 		{
 			"questionID": "q2",
-			"category": "ETSU",
 			"answers": [
 				"Millenial Building",
 				"Centeniall Hall",
@@ -24,7 +22,6 @@
 		},
 		{
 			"questionID": "q3",
-			"category": "ETSU",
 			"answers": [
 				"Brinkley Center",
 				"Sam Wilson Hall",
@@ -35,7 +32,6 @@
 		},
 		{
 			"questionID": "q4",
-			"category": "ETSU",
 			"answers": [
 				"Pepper the K9",
 				"Dr. Pepper",
@@ -43,6 +39,156 @@
 				"Pepper the Cat"
 			],
 			"correct": "Pepper the K9"
+		},
+		{
+			"questionID": "q5",
+			"answers": [
+				"Buccaneers",
+				"Pirates",
+				"Swashbucklers",
+				"Volunteers"
+			],
+			"correct": "Buccaneers"
+		},
+		{
+			"questionID": "q6",
+			"answers": [
+				"September 14th 2001",
+				"November 19th 2006",
+				"November 18th 2001",
+				"September 1st 2000"
+			],
+			"correct": "November 18th 2001"
+		},
+		{
+			"questionID": "q7",
+			"answers": [
+				"BASIC",
+				"C#",
+				"Assembly",
+				"C++"
+			],
+			"correct": "BASIC"
+		},
+		{
+			"questionID": "q8",
+			"answers": [
+				"3dfx Interactive",
+				"General Dynamics",
+				"Commodore",
+				"Google"
+			],
+			"correct": "General Dynamics"
+		},
+		{
+			"questionID": "q9",
+			"answers": [
+				"Fortnite",
+				"Rocket League",
+				"League of Legends",
+				"Dota 2"
+			],
+			"correct": "Rocket League"
+		},
+		{
+			"questionID": "q10",
+			"answers": [
+				"212F",
+				"100F",
+				"232F",
+				"16F"
+			],
+			"correct": "212F"
+		},
+		{
+			"questionID": "q11",
+			"answers": [
+				"Ionic Bond",
+				"Hydrogen Bond",
+				"Metallic Bond",
+				"Covalent Bond"
+			],
+			"correct": "Covalent Bond"
+		},
+		{
+			"questionID": "q12",
+			"answers": [
+				"Lobster Flatbread",
+				"Popcorn Shrimp",
+				"Bacon Wrapped Scallops",
+				"Lobster Roll"
+			],
+			"correct": "Bacon Wrapped Scallops"
+		},
+		{
+			"questionID": "q13",
+			"answers": [
+				"Scrum Master",
+				"Cop",
+				"Keypunch Operator",
+				"Firefighter"
+			],
+			"correct": "Cop"
+		},
+		{
+			"questionID": "q14",
+			"answers": [
+				"The Witcher 3: Wild Hunt",
+				"Terraria",
+				"Detroit: Become Human",
+				"Balatro"
+			],
+			"correct": "The Witcher 3: Wild Hunt"
+		},
+		{
+			"questionID": "q15",
+			"answers": [
+				"Minecraft",
+				"Terraria",
+				"Fortnite",
+				"Tetris"
+			],
+			"correct": "Tetris"
+		},
+		{
+			"questionID": "q16",
+			"answers": [
+				"LocalThunk",
+				"Playstack",
+				"Zilav",
+				"Todd Howard"
+			],
+			"correct": "LocalThunk"
+		},
+		{
+			"questionID": "q17",
+			"answers": [
+				"Dominic Sessa",
+				"Paul Giamatti",
+				"Mark Eydelshteyn",
+				"Ralph Fiennes"
+			],
+			"correct": "Paul Giamatti"
+		},
+		{
+			"questionID": "q18",
+			"answers": [
+				"Clarence Macklin",
+				"Hamish Linklater",
+				"Colman Domingo",
+				"Daveed Diggs"
+			],
+			"correct": "Colman Domingo"
+		},
+		{
+			"questionID": "q19",
+			"answers": [
+				"Stephen King",
+				"David Fincher",
+				"Mike Flanagan",
+				"Alberto Mielgo"
+			],
+			"correct": "Mike Flanagan"
 		}
 	]
 }

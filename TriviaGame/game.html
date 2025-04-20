@@ -9,8 +9,13 @@
 
 <body>
     <div id="GameZone">
+        <!-- Pause button (top‑right corner by default) -->
+        <button id="pauseBtn" type="button" onclick="pauseGame()">⏸</button>
+
         <!-- Display the question here -->
-        <h1 id="questionText"></h1>
+        <h3 id="questionText"></h3>
+
+        <img id="questionImage" src="" alt="" width="125" height="125">
 
         <form action="results.html" method="GET">
             <div id="answers">
@@ -21,6 +26,16 @@
                 <button class="answer-button" id="answer3" type="submit" onclick="checkAnswer(answer3.textContent)">Answer D</button>
             </div>
         </form>
+    </div>
+
+    <!-- Hidden pause overlay -->
+    <div id="pauseMenu" class="overlay hidden">
+        <div class="overlay-content">
+            <h1>Paused</h1>
+            <button onclick="resumeGame()">Resume</button>
+            <button onclick="restartGame()">Restart</button>
+            <button onclick="quitGame()">Quit</button>
+        </div>
     </div>
 
     <!-- Load your scripts -->
