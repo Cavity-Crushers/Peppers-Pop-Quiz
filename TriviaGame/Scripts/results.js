@@ -6,6 +6,9 @@ var correctness = localStorage.getItem('correct');
 var score = localStorage.getItem('score');
 const lives = localStorage.getItem('lives');
 const answeredQuestionText = localStorage.getItem('answeredQuestionText');
+const numOfQuestions = parseInt(localStorage.getItem('numberOfQuestions'), 10);
+const answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'));
+const numOfAnsweredQuestions = answeredQuestions.length;
 
 // Gets the text for the question that was answered, not a new random question
 document.getElementById('answeredQuestionText').textContent = answeredQuestionText;
@@ -19,13 +22,17 @@ document.getElementById('correct').textContent = correctness;
 // Show current lives as well
 document.getElementById('lives').textContent = `Lives: ${lives}`;
 
+// Sets <h1 id="score"> to the score
+document.getElementById('score').textContent = `Score: ${score}`;
+
 // If lives <= 0, go to game over
 if (parseInt(lives, 10) <= 0) {
     window.location.href = './gameover.html';
 }
 
-// Sets <h1 id="score"> to the score
-document.getElementById('score').textContent = score;
+if (numOfAnsweredQuestions == numOfQuestions) {
+    window.location.href = './win.html';
+}
 
 /**
  * Takes the player back to the game page

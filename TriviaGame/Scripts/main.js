@@ -3,13 +3,15 @@
 // Get the file paths of our questions and answers
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
+//var firstQuestion = true;
+//localStorage.setItem('firstQuestion', true);
 
 // We'll store references to the buttons, correct answer, correctness, and questionID
 let buttons = [];
 let correctAnswer = '';
 let correct = '';
 let questionId = 0;
-let answeredQuestions = [];
+//let answeredQuestions = [];
 
 
 /**
@@ -23,20 +25,26 @@ async function loadQuestionAndAnswers() {
 
         // Gets the max number of questions
         const questionsNumber = qData.question.length;
+        localStorage.setItem('numberOfQuestions', questionsNumber);
 
+        var isFirstQuestion = (localStorage.getItem('firstQuestion') === 'true');
+        console.log(isFirstQuestion)
         // Done to prevent weird issues with stringify and parse when aQ is empty (which would also prevent elimination of answered questions)
-        if (!answeredQuestions.length) {
-            questionId = Math.floor(Math.random() * (questionsNumber - 0 + 1)) + 0;
-            answeredQuestions.push(questionId);
+        if (isFirstQuestion) {
+            questionId = Math.floor(Math.random() * (questionsNumber - 1)) + 1;
+            var answeredQuestions = [questionId];
             localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+            isFirstQuestion = false;
+            localStorage.setItem('firstQuestion', isFirstQuestion);
+            console.log(isFirstQuestion);
             console.log(answeredQuestions);
         } else {
-            questionId = getRandomInt(0, questionsNumber);
+            questionId = getRandomQuestion(0, questionsNumber);
         }
         
-        const questionText = qData.question[questionId - 1].questionText;
-        const questionImageAddress = qData.question[questionId - 1].questionImageAddress;
-        const questionDescription = qData.question[questionId - 1].questionDescription;
+        const questionText = qData.question[questionId].questionText;
+        const questionImageAddress = qData.question[questionId].questionImageAddress;
+        const questionDescription = qData.question[questionId].questionDescription;
 
         // Showing a different question each time was causing the questionText on the results page to show incorrect question text.
         // Hopefully this solves it
@@ -50,7 +58,7 @@ async function loadQuestionAndAnswers() {
         // 2. Fetch answer JSON
         const aResponse = await fetch(answerURL);
         const aData = await aResponse.json();
-        const answerObj = aData.answer[questionId - 1];
+        const answerObj = aData.answer[questionId];
 
         correctAnswer = answerObj.correct;
         const answers = answerObj.answers;
@@ -74,17 +82,16 @@ async function loadQuestionAndAnswers() {
  * 
  * @param {any} min - The minimum value wanted
  * @param {any} max - The maximum value wanted
- * @returns - Returns a random int, inclusive of both inputs. 
+ * @returns - Returns a random int, inclusive of min but exclusive of max. 
  */
 function getRandomQuestion(min, max) {
-    const answeredQuestionsString = localStorage.getItem('answeredQuestions');
-    answeredQuestions = JSON.parse(answeredQuestionsString);
-    //answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'));
+    var answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'));
     console.log(answeredQuestions);
-    var randomQuestionId = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    var randomQuestionId = Math.floor(Math.random() * (max - min)) + min;
 
     while (answeredQuestions.includes(randomQuestionId)) {
-        randomQuestionId = Math.floor(Math.random() * (max - min + 1)) + min;
+        randomQuestionId = Math.floor(Math.random() * (max - min)) + min;
     }
 
     answeredQuestions.push(randomQuestionId);
@@ -92,11 +99,6 @@ function getRandomQuestion(min, max) {
     localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
 
     return randomQuestionId;
-
-    /*if (answeredQuestions.includes(randomQuestionId)) {
-        randomQuestionId = Math.floor(Math.random() * (max - min + 1)) + min;
-    }*/
-
 }
 
 /**
@@ -113,11 +115,13 @@ function initializeGameData() {
         localStorage.setItem('consecutiveCorrect', '0');
     }
     // If we have never stored score, set it to 0
-    if (!localStorage.getItem('score'))
-    {
+    if (!localStorage.getItem('score')) {
         localStorage.setItem('score', '0');
     }
-
+    // If it is the first question
+    if (!localStorage.getItem('firstQuestion')) {
+        localStorage.setItem('firstQuestion', true);
+    }
 }
 
 /**
@@ -216,6 +220,7 @@ function setupNavigation() {
         }
     });
 }
+
 // --------------------  PAUSE SYSTEM  --------------------
 
 /** Indicates whether game input is currently paused. */
