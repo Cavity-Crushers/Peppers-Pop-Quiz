@@ -3,16 +3,12 @@
 // Get the file paths of our questions and answers
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
-//var firstQuestion = true;
-//localStorage.setItem('firstQuestion', true);
 
 // We'll store references to the buttons, correct answer, correctness, and questionID
 let buttons = [];
 let correctAnswer = '';
 let correct = '';
 let questionId = 0;
-//let answeredQuestions = [];
-
 
 /**
  * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page.
@@ -28,15 +24,15 @@ async function loadQuestionAndAnswers() {
         localStorage.setItem('numberOfQuestions', questionsNumber);
 
         var isFirstQuestion = (localStorage.getItem('firstQuestion') === 'true');
-        console.log(isFirstQuestion)
-        // Done to prevent weird issues with stringify and parse when aQ is empty (which would also prevent elimination of answered questions)
+        // Done to prevent weird issues with stringify and parse when aQ is empty (which also prevented elimination of answered questions)
         if (isFirstQuestion) {
             questionId = Math.floor(Math.random() * (questionsNumber - 1)) + 1;
             var answeredQuestions = [questionId];
             localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+
             isFirstQuestion = false;
             localStorage.setItem('firstQuestion', isFirstQuestion);
-            console.log(isFirstQuestion);
+
             console.log(answeredQuestions);
         } else {
             questionId = getRandomQuestion(0, questionsNumber);
@@ -46,8 +42,7 @@ async function loadQuestionAndAnswers() {
         const questionImageAddress = qData.question[questionId].questionImageAddress;
         const questionDescription = qData.question[questionId].questionDescription;
 
-        // Showing a different question each time was causing the questionText on the results page to show incorrect question text.
-        // Hopefully this solves it
+        // Store the questionText now so results.js can access it
         localStorage.setItem('answeredQuestionText', questionText);
 
         // Put it in the <h1 id="questionText">
@@ -77,8 +72,9 @@ async function loadQuestionAndAnswers() {
 }
 
 /**
- * Done this way because Math.random in JS is a floating point function and I will likely need 
- * to modify this further for the sake of exlcuding questions and giving questions from specific categories.
+ * Math.random returns a floating point value by default in JS. This function was created
+ * to allow for only integer values and to allow for the removal of questions from the pool
+ * of possible numbers.
  * 
  * @param {any} min - The minimum value wanted
  * @param {any} max - The maximum value wanted
