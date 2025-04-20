@@ -30,7 +30,7 @@ if (parseInt(lives, 10) <= 0) {
     window.location.href = './gameover.html';
 }
 
-if (numOfAnsweredQuestions == numOfQuestions) {
+if (numOfAnsweredQuestions === numOfQuestions && parseInt(lives, 10) > 0) {
     window.location.href = './win.html';
 }
 
