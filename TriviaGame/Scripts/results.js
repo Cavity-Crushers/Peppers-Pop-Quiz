@@ -5,6 +5,10 @@ var selectedAnswer = localStorage.getItem('selectedAnswer');
 var correctness = localStorage.getItem('correct');
 var score = localStorage.getItem('score');
 const lives = localStorage.getItem('lives');
+const answeredQuestionText = localStorage.getItem('answeredQuestionText');
+
+// Gets the text for the question that was answered, not a new random question
+document.getElementById('answeredQuestionText').textContent = answeredQuestionText;
 
 // Sets <h2 id="selectedAnswer"> to the answer selected on the game page
 document.getElementById('selectedAnswer').textContent = selectedAnswer;

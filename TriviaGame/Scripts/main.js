@@ -4,12 +4,13 @@
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
 
-
 // We'll store references to the buttons, correct answer, correctness, and questionID
 let buttons = [];
 let correctAnswer = '';
 let correct = '';
 let questionId = 0;
+let answeredQuestions = [];
+
 
 /**
  * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page.
@@ -19,9 +20,27 @@ async function loadQuestionAndAnswers() {
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
         const qData = await qResponse.json();
+
+        // Gets the max number of questions
+        const questionsNumber = qData.question.length;
+
+        // Done to prevent weird issues with stringify and parse when aQ is empty (which would also prevent elimination of answered questions)
+        if (!answeredQuestions.length) {
+            questionId = Math.floor(Math.random() * (questionsNumber - 0 + 1)) + 0;
+            answeredQuestions.push(questionId);
+            localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+            console.log(answeredQuestions);
+        } else {
+            questionId = getRandomInt(0, questionsNumber);
+        }
+        
         const questionText = qData.question[questionId - 1].questionText;
         const questionImageAddress = qData.question[questionId - 1].questionImageAddress;
         const questionDescription = qData.question[questionId - 1].questionDescription;
+
+        // Showing a different question each time was causing the questionText on the results page to show incorrect question text.
+        // Hopefully this solves it
+        localStorage.setItem('answeredQuestionText', questionText);
 
         // Put it in the <h1 id="questionText">
         document.getElementById('questionText').textContent = questionText;
@@ -47,6 +66,37 @@ async function loadQuestionAndAnswers() {
     } catch (err) {
         console.error('Error loading question or answers:', err);
     }
+}
+
+/**
+ * Done this way because Math.random in JS is a floating point function and I will likely need 
+ * to modify this further for the sake of exlcuding questions and giving questions from specific categories.
+ * 
+ * @param {any} min - The minimum value wanted
+ * @param {any} max - The maximum value wanted
+ * @returns - Returns a random int, inclusive of both inputs. 
+ */
+function getRandomQuestion(min, max) {
+    const answeredQuestionsString = localStorage.getItem('answeredQuestions');
+    answeredQuestions = JSON.parse(answeredQuestionsString);
+    //answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'));
+    console.log(answeredQuestions);
+    var randomQuestionId = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    while (answeredQuestions.includes(randomQuestionId)) {
+        randomQuestionId = Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    answeredQuestions.push(randomQuestionId);
+
+    localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
+
+    return randomQuestionId;
+
+    /*if (answeredQuestions.includes(randomQuestionId)) {
+        randomQuestionId = Math.floor(Math.random() * (max - min + 1)) + min;
+    }*/
+
 }
 
 /**
@@ -205,6 +255,7 @@ function restartGame() {
  * @returns {void}
  */
 function quitGame() {
+    localStorage.clear();
     window.location.href = './index.html';
 }
 
