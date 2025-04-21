@@ -74,9 +74,42 @@ function playGameOverSoundEffect() {
     gameOverAudio.play().catch((e) => console.error("Playback failed:", e));
 }
 
-/*────────────────────────────────────────────
-  INITIALIZATION
-────────────────────────────────────────────*/
+/**
+ * Allows for players to select answers with the arrow keys by moving right and left and
+ * pressing the "ENTER" key to select an answer
+ * 
+ * @returns In case no buttons are found it immediately returns
+ */
+function setupNavigation() {
+    // Grab all the answer buttons
+    buttons = document.querySelectorAll('.redirection-button');
+    if (!buttons.length) return; // In case none are found
+
+    let currentIndex = 0;
+    // Focus the first button
+    buttons[currentIndex].focus();
+
+    // Listen for arrow keys to move focus & Enter to click
+    document.addEventListener('keydown', (event) => {
+        // Move selection down
+        if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            currentIndex = (currentIndex + 1) % buttons.length;
+            buttons[currentIndex].focus();
+        }
+        // Move selection up
+        else if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            currentIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+            buttons[currentIndex].focus();
+        }
+        // Press the "focused" button
+        else if (event.key === 'Enter') {
+            event.preventDefault();
+            buttons[currentIndex].click();
+        }
+    });
+}
 
 window.addEventListener("DOMContentLoaded", () => {
     // Set a random headline
@@ -85,4 +118,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Play SFX
     playGameOverSoundEffect();
+    
+    // Setup Navigation
+    setupNavigation();
 });
