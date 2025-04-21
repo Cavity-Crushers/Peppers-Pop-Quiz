@@ -21,7 +21,8 @@
 }
 
 /**
-    Gives the buttons used to navigate to different pages their own look separate from the answer buttons
+    Gives the buttons used to navigate to different pages their own look separate from buttons
+    .class redirection-button
 */
 .redirection-button {
     margin: 10px 10px;
@@ -29,3 +30,13 @@
     width: 100px;
     font-size: 16px;
 }
+
+    /**
+ * Adds focus styling to selected buttons.
+ * 
+ * .class redirection-button:focus
+ */
+    .redirection-button:focus {
+        outline: 3px solid #007BFF;
+        background-color: #e0f0ff;
+    }

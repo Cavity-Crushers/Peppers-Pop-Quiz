@@ -82,7 +82,7 @@ function playGameOverSoundEffect() {
  */
 function setupNavigation() {
     // Grab all the answer buttons
-    buttons = document.querySelectorAll('.redirection-button');
+    var buttons = document.querySelectorAll('.redirection-button');
     if (!buttons.length) return; // In case none are found
 
     let currentIndex = 0;
