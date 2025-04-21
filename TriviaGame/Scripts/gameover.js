@@ -1,46 +1,124 @@
-// gameover.js
+﻿// gameover.js
+"use strict";
+
+/*────────────────────────────────────────────
+  RANDOM “GAME OVER” MESSAGE
+────────────────────────────────────────────*/
 
 /**
- * Quits the game: send user back to home page (index.html) and clears the local storage
+ * List of possible messages shown at game‑over.
+ * Feel free to add or remove lines.
+ * @type {string[]}
+ */
+const GAME_OVER_MESSAGES = [
+    "GAME OVER",
+    "Better luck next time!",
+    "Out of lives—but not out of spirit!",
+    "The quiz strikes again!",
+    "No worries, you can try again!",
+    "Mission failed… for now.",
+    "That's all, quiz‑folk!",
+    "Zero lives left—take a breather!",
+    "Kaboom! Your run is done."
+];
+
+/***
+ * Picks a random entry from `GAME_OVER_MESSAGES`.
+ * @returns {string} Random game‑over message
+ */
+function getRandomGameOverMessage() {
+    const i = Math.floor(Math.random() * GAME_OVER_MESSAGES.length);
+    return GAME_OVER_MESSAGES[i];
+}
+
+/*────────────────────────────────────────────
+  NAVIGATION BUTTONS
+────────────────────────────────────────────*/
+
+/***
+ * Clears storage and returns to the home screen.
+ * @returns {void}
  */
 function goToHome() {
     localStorage.clear();
-
-    window.location.href = './index.html';
+    window.location.href = "./index.html";
 }
 
-/**
- * Play Again: reset data and go back to the game page.
+/***
+ * Clears storage and starts a fresh game.
+ * @returns {void}
  */
 function playAgain() {
-    //Clear everything
     localStorage.clear();
+    window.location.href = "./game.html";
+}
 
-    window.location.href = './game.html';
+/*────────────────────────────────────────────
+  SOUND EFFECT
+────────────────────────────────────────────*/
+
+/** Cached HTMLAudioElement (created lazily). */
+let gameOverAudio;
+
+/***
+ * Plays the “game over” sound once.
+ * @returns {void}
+ */
+function playGameOverSoundEffect() {
+    if (!gameOverAudio) {
+        gameOverAudio = new Audio(
+            "https://cdn.freesound.org/previews/173/173859_1074082-lq.mp3"
+        );
+        gameOverAudio.type = "audio/mpeg";
+    }
+    gameOverAudio.play().catch((e) => console.error("Playback failed:", e));
 }
 
 /**
- * Used to play the game over sound effect when a user looses the game
+ * Allows for players to select answers with the arrow keys by moving right and left and
+ * pressing the "ENTER" key to select an answer
  * 
- * @param {any} gameOverAudio - Audio for user feedback
+ * @returns In case no buttons are found it immediately returns
  */
+function setupNavigation() {
+    // Grab all the answer buttons
+    buttons = document.querySelectorAll('.redirection-button');
+    if (!buttons.length) return; // In case none are found
 
-let gameOverAudio;
+    let currentIndex = 0;
+    // Focus the first button
+    buttons[currentIndex].focus();
 
-function playGameOverSoundEffect() {
-    // Only create the audio element once
-
-    if (!gameOverAudio) {
-        gameOverAudio = new Audio("https://cdn.freesound.org/previews/173/173859_1074082-lq.mp3");
-        gameOverAudio.type = "audio/mpeg";
-    }
-
-    gameOverAudio.play().catch(e => {
-        console.error("Playback failed:", e);
+    // Listen for arrow keys to move focus & Enter to click
+    document.addEventListener('keydown', (event) => {
+        // Move selection down
+        if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            currentIndex = (currentIndex + 1) % buttons.length;
+            buttons[currentIndex].focus();
+        }
+        // Move selection up
+        else if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            currentIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+            buttons[currentIndex].focus();
+        }
+        // Press the "focused" button
+        else if (event.key === 'Enter') {
+            event.preventDefault();
+            buttons[currentIndex].click();
+        }
     });
 }
 
-//This waits for the content to fully load before the sound effect is played
 window.addEventListener("DOMContentLoaded", () => {
+    // Set a random headline
+    document.getElementById("gameOverTitle").textContent =
+        getRandomGameOverMessage();
+
+    // Play SFX
     playGameOverSoundEffect();
+    
+    // Setup Navigation
+    setupNavigation();
 });
