@@ -38,6 +38,11 @@
     box-shadow: 0 0 4px rgba(0 0 0 /.25);
 }
 
+    #pauseBtn:hover {
+        background: #f0f0f0;
+    }
+
+
 /**
  * Styles the timer.
  * 
@@ -45,17 +50,39 @@
  */
 #timer {
     position: absolute;
-    top: 35px;
-    right: 10px;
-    font-size: 1rem;
+    top: 8px;
+    left: 10px;
+    font-size: 16px;
     font-weight: bold;
     padding: 4px 8px;
+    border: none;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(0 0 0 /.25);
 }
 
-    #pauseBtn:hover {
-        background: #f0f0f0;
+/**
+ * Handles blinking animation
+*/
+@keyframes blink-opacity {
+    0% {
+        opacity: 1;
     }
 
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.blinking {
+    animation: blink-opacity 1s infinite;
+}
+
+    
 /* 3.  Full‑screen overlay that appears when paused.
       .hidden is toggled by JS to hide/show it. */
 .overlay {
