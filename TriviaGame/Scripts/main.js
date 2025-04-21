@@ -10,6 +10,8 @@ let correctAnswer = '';
 let correct = '';
 let questionId = 0;
 let secondsLeft = 30;
+let timerInterval = null;
+
 
 /**
  * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page.
@@ -72,7 +74,8 @@ async function loadQuestionAndAnswers() {
         }
 
         updateTimer();
-        setInterval(updateTimer, 1000);
+        timerInterval = setInterval(updateTimer, 1000);
+
         
     } catch (err) {
         console.error('Error loading question or answers:', err);
@@ -190,44 +193,6 @@ function updateLivesAndConsecutive(isCorrect) {
     localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
 }
 
-/**
- * Allows for players to select answers with the arrow keys by moving up and down and
- * pressing the "ENTER" key to select an answer to allow for more controls when playing
- * on a laptop
- * 
- * @returns In case no buttons are found it immediately returns
- */
-function setupNavigation() {
-    // Grab all the answer buttons
-    buttons = document.querySelectorAll('.answer-button');
-    if (!buttons.length) return; // In case none are found
-
-    let currentIndex = 0;
-    // Focus the first button
-    buttons[currentIndex].focus();
-
-    // Listen for arrow keys to move focus & Enter to click
-    document.addEventListener('keydown', (event) => {
-        // Move selection down
-        if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            currentIndex = (currentIndex + 1) % buttons.length;
-            buttons[currentIndex].focus();
-        }
-        // Move selection up
-        else if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            currentIndex = (currentIndex - 1 + buttons.length) % buttons.length;
-            buttons[currentIndex].focus();
-        }
-        // Press the "focused" button
-        else if (event.key === 'Enter') {
-            event.preventDefault();
-            buttons[currentIndex].click();
-        }
-    });
-}
-
 // --------------------  PAUSE SYSTEM  --------------------
 
 /** Indicates whether game input is currently paused. */
@@ -240,6 +205,8 @@ let isPaused = false;
 function pauseGame() {
     isPaused = true;
     document.getElementById('pauseMenu').classList.remove('hidden');
+    timerDisplay.classList.add('blinking');
+    timerDisplay.style.color = "blue";
 }
 
 /*** 
@@ -249,6 +216,8 @@ function pauseGame() {
 function resumeGame() {
     isPaused = false;
     document.getElementById('pauseMenu').classList.add('hidden');
+    timerDisplay.classList.remove('blinking');
+    timerDisplay.style.color = "black";
     // put focus back on first answer for keyboard users
     if (buttons.length) buttons[0].focus();
 }
@@ -276,18 +245,30 @@ document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'p') {
         e.preventDefault();
         isPaused ? resumeGame() : pauseGame();
-    }
+    } 
 });
 
 // --------------------  NAVIGATION (update)  --------------------
 function setupNavigation() {
     buttons = document.querySelectorAll('.answer-button');
+    buttons2 = document.querySelectorAll('.pause-button');
     if (!buttons.length) return;
 
     let currentIndex = 0;
     buttons[currentIndex].focus();
 
     document.addEventListener('keydown', (event) => {
+
+        if (event.key === 'ArrowRight' && isPaused == true) {
+            event.preventDefault();
+            currentIndex = (currentIndex + 1) % buttons2.length;
+            buttons2[currentIndex].focus();
+        } else if (event.key === 'ArrowLeft' && isPaused == true) {
+            event.preventDefault();
+            currentIndex = (currentIndex - 1 + buttons2.length) % buttons2.length;
+            buttons2[currentIndex].focus();
+        }
+
         // Ignore key navigation while paused
         if (isPaused) return;
 
@@ -302,7 +283,7 @@ function setupNavigation() {
         } else if (event.key === 'Enter') {
             event.preventDefault();
             buttons[currentIndex].click();
-        }
+        } 
     });
 }
 
@@ -314,6 +295,8 @@ const timerDisplay = document.getElementById("timer");
  */
 
 function updateTimer() {
+    if (isPaused) { return }
+
     const minutes = Math.floor(secondsLeft / 60);
     const secs = secondsLeft % 60;
     timerDisplay.textContent = `${minutes}:${secs.toString().padStart(2, '0')}`;
