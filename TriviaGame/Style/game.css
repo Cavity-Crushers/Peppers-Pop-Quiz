@@ -11,6 +11,7 @@
     max-height: 400px;
     background-color: lightblue;
     padding: 5px;
+    position: relative;
 }
 
 /*───────────────────────────────────────────────
@@ -35,6 +36,20 @@
     font-size: 16px;
     border-radius: 4px;
     box-shadow: 0 0 4px rgba(0 0 0 /.25);
+}
+
+/**
+ * Styles the timer.
+ * 
+ * .class answer-button
+ */
+#timer {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 4px 8px;
 }
 
     #pauseBtn:hover {

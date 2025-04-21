@@ -4,11 +4,12 @@
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
 
-// We'll store references to the buttons, correct answer, correctness, and questionID
+// We'll store references to the buttons, correct answer, timer, correctness, and questionID
 let buttons = [];
 let correctAnswer = '';
 let correct = '';
 let questionId = 0;
+let secondsLeft = 30;
 
 /**
  * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page.
@@ -41,6 +42,10 @@ async function loadQuestionAndAnswers() {
         const questionText = qData.question[questionId].questionText;
         const questionImageAddress = qData.question[questionId].questionImageAddress;
         const questionDescription = qData.question[questionId].questionDescription;
+        const questionTimer = qData.question[questionId].questionTimer;
+
+        // Set the timer
+        secondsLeft = questionTimer;
 
         // Store the questionText now so results.js can access it
         localStorage.setItem('answeredQuestionText', questionText);
@@ -65,6 +70,9 @@ async function loadQuestionAndAnswers() {
                 btn.textContent = answers[i];
             }
         }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
         
     } catch (err) {
         console.error('Error loading question or answers:', err);
@@ -135,6 +143,9 @@ async function checkAnswer(answerText) {
     {
         correct = "Correct!";
         gameScore += 50;
+    }
+    else if (answerText === "No answer selected.") {
+        correct = "You ran out of time!";
     }
     else
     {
@@ -293,6 +304,30 @@ function setupNavigation() {
             buttons[currentIndex].click();
         }
     });
+}
+
+// Heres the modifiers for the timer, seconds is how long the timer is while timerDisplay is how the timer is displayed
+const timerDisplay = document.getElementById("timer");
+
+/**
+ * Updates the timer every second.
+ */
+
+function updateTimer() {
+    const minutes = Math.floor(secondsLeft / 60);
+    const secs = secondsLeft % 60;
+    timerDisplay.textContent = `${minutes}:${secs.toString().padStart(2, '0')}`;
+
+    if (secondsLeft <= 0) {
+        clearInterval(timer); // Stop the countdown
+
+        checkAnswer("No answer selected.");
+
+        window.location.href = "results.html";
+
+    } else {
+        secondsLeft--;
+    }
 }
 
 /**
