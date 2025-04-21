@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="JL Graham">
+    <meta name="date" content="2025-04-09">
+    <meta name="last revised" content="2024-04-14">
+    <meta name="description" content="SE1 Sprint 3 Categories Page">
+    <meta name="keywords" content="se1, sprint 3, categories page, cavity crushers">
+    <title>Pepper's Pop Quiz - Categories</title>
+    <link rel="stylesheet" href="Style/categories.css">
+    <link rel="icon" type="image/x-icon" href="../Data/FaviconTemp.png">
+
+    <!-- categories.html
+     Author: JL Graham
+     Date: 04/21/24
+     Last Revised: 04/21/24
+     Description: Page that allows players to select the categories of questions they want to answer
+     -->
+</head>
+<body>
+
+    <div id="GameZone">
+        <select id="selectCategory">
+            <option>Choose a category</option>
+        </select>
+
+        <!-- Button to quit and button to continue next to each other -->
+        <div class="button-container">
+            <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
+            <button class="redirection-button" type="button" onclick="goToGame()">Continue</button>
+        </div>
+    </div>
+
+    <!-- Load Scripts -->
+    <script src="scripts/view.js"></script>
+    <script src="scripts/categories.js"></script>
+    <!-- <script src="scripts/main.js"></script> -->
+    <!-- <script src="scripts/results.js"></script> -->
+</body>
+</html>

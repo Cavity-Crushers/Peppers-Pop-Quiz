@@ -198,30 +198,26 @@ function updateLivesAndConsecutive(isCorrect) {
  * @returns In case no buttons are found it immediately returns
  */
 function setupNavigation() {
-    // Grab all the answer buttons
+
     buttons = document.querySelectorAll('.answer-button');
-    if (!buttons.length) return; // In case none are found
+    if (!buttons.length) return;
 
     let currentIndex = 0;
-    // Focus the first button
     buttons[currentIndex].focus();
 
-    // Listen for arrow keys to move focus & Enter to click
     document.addEventListener('keydown', (event) => {
-        // Move selection down
+        // Ignore key navigation while paused
+        if (isPaused) return;
+
         if (event.key === 'ArrowDown') {
             event.preventDefault();
             currentIndex = (currentIndex + 1) % buttons.length;
             buttons[currentIndex].focus();
-        }
-        // Move selection up
-        else if (event.key === 'ArrowUp') {
+        } else if (event.key === 'ArrowUp') {
             event.preventDefault();
             currentIndex = (currentIndex - 1 + buttons.length) % buttons.length;
             buttons[currentIndex].focus();
-        }
-        // Press the "focused" button
-        else if (event.key === 'Enter') {
+        } else if (event.key === 'Enter') {
             event.preventDefault();
             buttons[currentIndex].click();
         }
