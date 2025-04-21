@@ -22,7 +22,7 @@ async function loadCategories() {
             }
         }
         var allCats = document.createElement("option");
-        allCat.textContent = "All Categories";
+        allCats.textContent = "All Categories";
         allCats.value = "All Categories";
         select.appendChild(allCats);
 
@@ -31,6 +31,7 @@ async function loadCategories() {
         randomCat.value = "Random Category";
         select.appendChild(randomCat);
 
+        localStorage.setItem('categories', JSON.stringify(categories));
     } catch (err) {
         console.error('Error loading questions:', err);
     }
@@ -40,6 +41,8 @@ async function loadCategories() {
  * Takes the player back to the game page
  */
 async function goToGame() {
+    var selectedCategory = document.getElementById("selectCategory");
+    localStorage.setItem('selectedCategory', selectedCategory.options[selectedCategory.selectedIndex].text);
     window.location.href = './game.html';
 }
 
