@@ -1,0 +1,31 @@
+/**
+ * Used to limit the game zone to a specific size and style for the game.
+ * 
+ * #ID GameZone
+ */
+#GameZone {
+    width: 400px;
+    height: 400px;
+    box-sizing: border-box;
+    max-width: 800px;
+    max-height: 400px;
+    background-color: lightblue;
+    padding: 20px;
+}
+
+/**
+    Allows the buttons for Quit and Continue to display on the same line
+*/
+.button-container {
+    display: flex;
+}
+
+/**
+    Gives the buttons used to navigate to different pages their own look separate from the answer buttons
+*/
+.redirection-button {
+    margin: 10px 10px;
+    padding: 10px;
+    width: 100px;
+    font-size: 16px;
+}
