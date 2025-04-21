@@ -30,7 +30,7 @@ function goToHome() {
  */
 function playAgain() {
     localStorage.clear();
-    window.location.href = './game.html';
+    window.location.href = './categories.html';
 }
 
 /**

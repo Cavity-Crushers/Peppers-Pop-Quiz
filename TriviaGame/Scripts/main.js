@@ -279,7 +279,7 @@ function resumeGame() {
  */
 function restartGame() {
     localStorage.clear();                // wipe everything
-    window.location.href = './game.html';
+    window.location.href = './categories.html';
 }
 
 /*** 
