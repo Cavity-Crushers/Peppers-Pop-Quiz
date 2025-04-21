@@ -3,15 +3,16 @@
 // Get the file paths of our questions and answers
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
-const questionId = 16;
 
-// We'll store references to the buttons, correct answer, and correctness
+
+// We'll store references to the buttons, correct answer, correctness, and questionID
 let buttons = [];
 let correctAnswer = '';
 let correct = '';
+let questionId = 0;
 
 /**
- * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page
+ * Reads in the questions and answers from their respective files and assigns the answers to buttons on the game HMTL page.
  */
 async function loadQuestionAndAnswers() {
     try {
@@ -49,7 +50,8 @@ async function loadQuestionAndAnswers() {
 }
 
 /**
- * Initializes the integer values that change between questions at the beginning of the game
+ * Initializes the integer values that change between questions at the beginning of the game.
+ * Otherwise score would not have a value displayed if the player answered a question wrong to start.
  */
 function initializeGameData() {
     // If we have never stored lives, set them to 3. Otherwise, keep what’s in storage
@@ -69,7 +71,9 @@ function initializeGameData() {
 }
 
 /**
- * Used to store the answer selected and check its correctness.
+ * Uses localStorage to store the answer selected, its correctness, and score, because otherwise
+ * the value wouldn't transfer between files. Local storage stores everything as strings so you 
+ * have to parse score to an int and then convert that int to a string when you store it back.
  * 
  * @param {any} answerText - Text for the answer choice associated to the button clicked
  */
@@ -127,7 +131,8 @@ function updateLivesAndConsecutive(isCorrect) {
 
 /**
  * Allows for players to select answers with the arrow keys by moving up and down and
- * pressing the "ENTER" key to select an answer
+ * pressing the "ENTER" key to select an answer to allow for more controls when playing
+ * on a laptop
  * 
  * @returns In case no buttons are found it immediately returns
  */
@@ -161,7 +166,82 @@ function setupNavigation() {
         }
     });
 }
+// --------------------  PAUSE SYSTEM  --------------------
 
+/** Indicates whether game input is currently paused. */
+let isPaused = false;
+
+/*** 
+ * Shows the pause overlay and blocks answer navigation.
+ * @returns {void}
+ */
+function pauseGame() {
+    isPaused = true;
+    document.getElementById('pauseMenu').classList.remove('hidden');
+}
+
+/*** 
+ * Hides the pause overlay and re‑enables input.
+ * @returns {void}
+ */
+function resumeGame() {
+    isPaused = false;
+    document.getElementById('pauseMenu').classList.add('hidden');
+    // put focus back on first answer for keyboard users
+    if (buttons.length) buttons[0].focus();
+}
+
+/*** 
+ * Clears score/lives and starts from first question.
+ * @returns {void}
+ */
+function restartGame() {
+    localStorage.clear();                // wipe everything
+    window.location.href = './game.html';
+}
+
+/*** 
+ * Leaves the game and returns to home page.
+ * @returns {void}
+ */
+function quitGame() {
+    window.location.href = './index.html';
+}
+
+// Optional keyboard shortcut: press “P” to pause / resume
+document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        isPaused ? resumeGame() : pauseGame();
+    }
+});
+
+// --------------------  NAVIGATION (update)  --------------------
+function setupNavigation() {
+    buttons = document.querySelectorAll('.answer-button');
+    if (!buttons.length) return;
+
+    let currentIndex = 0;
+    buttons[currentIndex].focus();
+
+    document.addEventListener('keydown', (event) => {
+        // Ignore key navigation while paused
+        if (isPaused) return;
+
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            currentIndex = (currentIndex + 1) % buttons.length;
+            buttons[currentIndex].focus();
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            currentIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+            buttons[currentIndex].focus();
+        } else if (event.key === 'Enter') {
+            event.preventDefault();
+            buttons[currentIndex].click();
+        }
+    });
+}
 
 /**
  * Calls all of the functions that do not run on answer selection to initialize all variables
