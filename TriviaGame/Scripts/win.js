@@ -1,4 +1,4 @@
-// win.js
+﻿// win.js
 
 const score = localStorage.getItem('score');
 const lives = localStorage.getItem('lives');
@@ -71,11 +71,36 @@ function setupNavigation() {
     });
 }
 
+/*────────────────────────────────────────────
+  SOUND EFFECT
+────────────────────────────────────────────*/
+
+/** Cached HTMLAudioElement (created lazily). */
+let gameOverAudio;
+
+/***
+ * Plays the “game over” sound once.
+ * @returns {void}
+ */
+function playGameOverSoundEffect() {
+    if (!gameOverAudio) {
+        gameOverAudio = new Audio(
+            "https://cdn.freesound.org/previews/270/270528_5123851-lq.mp3"
+        );
+        gameOverAudio.type = "audio/mpeg";
+    }
+    gameOverAudio.play().catch((e) => console.error("Playback failed:", e));
+}
+
 
 /**
  * Calls all of the functions that do not run on answer selection to initialize all variables
  */
 window.addEventListener('DOMContentLoaded', () => {
-    // First, set up arrow key navigation
+
+    // Play SFX
+    playGameOverSoundEffect();
+
+    // Setup Navigation
     setupNavigation();
 });

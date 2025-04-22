@@ -33,6 +33,26 @@
     font-size: 16px;
 }
 
+    /**
+ * Adds focus styling to selected buttons.
+ * 
+ * .class redirection-button:focus
+ */
+    .redirection-button:focus {
+        outline: 3px solid #007BFF;
+        background-color: #e0f0ff;
+    }
+
+/**
+ * Adds focus styling to selected buttons.
+ * 
+ * #ID selectCategory:focus
+ */
+#selectCategory:focus {
+    outline: 3px solid #007BFF;
+    background-color: #e0f0ff;
+}
+
 .center {
     margin: auto;
 }

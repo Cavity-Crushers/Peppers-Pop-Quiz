@@ -50,7 +50,7 @@
 		},
 		{
 			"questionID": "q6",
-			"category": "Kinser",
+			"category": "Computing",
 			"questionText": "What language was Kinser's first program made for money written in?",
 			"questionImageAddress": "https://miro.medium.com/v2/resize:fit:1400/0*kmYC7KFe-CgTAJ7A",
 			"questionDescription": "Image of random lines of code.",
@@ -58,7 +58,7 @@
 		},
 		{
 			"questionID": "q7",
-			"category": "Kinser",
+			"category": "Computing",
 			"questionText": "What company did Kinser land his first professional programmer job with?",
 			"questionImageAddress": "https://images.pexels.com/photos/2382848/pexels-photo-2382848.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 			"questionDescription": "Image of a plane.",
@@ -90,7 +90,7 @@
 		},
 		{
 			"questionID": "q11",
-			"category": "ETSU",
+			"category": "Computing",
 			"questionText": "What is Ramsey's favorite Red Lobster food item?",
 			"questionImageAddress": "https://images.pexels.com/photos/8352391/pexels-photo-8352391.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 			"questionDescription": "Image of lobsters.",
@@ -98,7 +98,7 @@
 		},
 		{
 			"questionID": "q12",
-			"category": "ETSU",
+			"category": "Computing",
 			"questionText": "What was Ramsey's job before being a ETSU Professor?",
 			"questionImageAddress": "https://images.pexels.com/photos/28771663/pexels-photo-28771663/free-photo-of-cowboy-teddy-bear-with-punk-t-shirt-in-theme-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 			"questionDescription": "Image of a sheriff bear.",
@@ -150,6 +150,62 @@
 			"questionText": "Who is the director of Netflix shows The Haunting of Hill House and Midnight Mass?",
 			"questionImageAddress": "https://images.pexels.com/photos/10082743/pexels-photo-10082743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 			"questionDescription": "Image of a person with a white sheet over their head.",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "q19",
+			"category": "Gaming",
+			"questionText": "Who is the CEO of Epic Games?",
+			"questionImageAddress": "https://imgs.search.brave.com/eNN1epZ1DeGUcSCWt1ffF_Mdi72-srcyVx6QH4hN0kI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0xG/M0EyZGNibW5CVFN1/YWVUVU5FWVouanBn",
+			"questionDescription": "Image of Epic Games CEO",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "q20",
+			"category": "ETSU",
+			"questionText": "Where is Passport's Office located?",
+			"questionImageAddress": "https://www.thepassportoffice.com/nashville/local/renew/passport/images/passport.jpg",
+			"questionDescription": "Image of a passport",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "q21",
+			"category": "ETSU",
+			"questionText": "Where is the Rifle Range located?",
+			"questionImageAddress": "https://www.gosupps.com/media/catalog/product/cache/25/image/1500x/040ec09b1e35df139433887a97daa66f/6/1/61OmSC1TNaL._AC_SL1500__1.jpg",
+			"questionDescription": "Image of a paper shoooting target.",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "q22",
+			"category": "Gaming",
+			"questionText": "What Minecraft mob was the base of a creeper?",
+			"questionImageAddress": "https://media2.s-nbcnews.com/i/MSNBC/Components/Photo/_new/100722-moss-hmed-1150a.jpg",
+			"questionDescription": "Image of a Sphagnum moss",
+			"questionTimer": 10
+		},
+		{
+			"questionID": "q23",
+			"category": "Gaming",
+			"questionText": "What Minecraft update added pistons to the game?",
+			"questionImageAddress": "https://cdn.pixabay.com/photo/2018/08/18/03/11/piston-3614177_640.png",
+			"questionDescription": "Image of a Piston",
+			"questionTimer": 25
+		},
+		{
+			"questionID": "q24",
+			"category": "Gaming",
+			"questionText": "What Chapter 1 Season was Tilted Towers removed from Fortnite?",
+			"questionImageAddress": "https://images.unsplash.com/photo-1472017053394-b29fded587cd?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dG93ZXJzfGVufDB8fDB8fHww",
+			"questionDescription": "Image of two city towers",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "q25",
+			"category": "Computing",
+			"questionText": "What animal kept messing with Kinser's bamboo river?",
+			"questionImageAddress": "https://images.squarespace-cdn.com/content/v1/5e5cd082c50ea102c52e5bb0/b18024a9-3ca6-4bb2-ad3a-f859d3ea65fb/dendrocalamus-bamboo-water-production.jpg",
+			"questionDescription": "Image of a bamboo river",
 			"questionTimer": 20
 		}
 	]

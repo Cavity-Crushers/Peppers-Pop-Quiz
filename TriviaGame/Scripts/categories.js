@@ -62,8 +62,68 @@ async function goToHome() {
 }
 
 /**
+ * Allows for players to select answers with the arrow keys by moving right and left and
+ * pressing the "ENTER" key to select an answer
+ * 
+ * @returns In case no buttons are found it immediately returns
+ */
+function setupNavigation() {
+    const buttons = document.querySelectorAll('.redirection-button');
+    const dropdown = document.getElementById('selectCategory');
+    const elements = [dropdown, ...buttons]; 
+    let currentIndex = 0;
+    let inDropdownNavigation = false;
+
+    elements[currentIndex].focus();
+
+    document.addEventListener('keydown', (event) => {
+        const focusedElement = elements[currentIndex];
+
+        if (inDropdownNavigation && focusedElement.tagName === 'SELECT') {
+            event.preventDefault();
+            const selectedIndex = focusedElement.selectedIndex;
+            if (event.key === 'ArrowDown') {
+                focusedElement.selectedIndex = (selectedIndex + 1) % focusedElement.options.length;
+            } else if (event.key === 'ArrowUp') {
+                focusedElement.selectedIndex = (selectedIndex - 1 + focusedElement.options.length) % focusedElement.options.length;
+            } else if (event.key === 'Enter' || event.key === 'Escape') {
+                inDropdownNavigation = false;
+                focusedElement.blur(); 
+            }
+            return;
+        }
+
+        // handles the selection of categories
+        switch (event.key) {
+            case 'ArrowRight':
+                event.preventDefault();
+                currentIndex = (currentIndex + 1) % elements.length;
+                elements[currentIndex].focus();
+                break;
+            case 'ArrowLeft':
+                event.preventDefault();
+                currentIndex = (currentIndex - 1 + elements.length) % elements.length;
+                elements[currentIndex].focus();
+                break;
+            case 'Enter':
+            case ' ':
+                event.preventDefault();
+                if (focusedElement.tagName === 'SELECT') {
+                    inDropdownNavigation = true;
+                } else {
+                    focusedElement.click();
+                }
+                break;
+        }
+    });
+}
+
+
+
+/**
  * Calls all of the functions that do not run on answer selection to initialize all variables
  */
 window.addEventListener('DOMContentLoaded', () => {
     loadCategories();
+    setupNavigation();
 });
