@@ -3,6 +3,8 @@ const questionURL = './Data/questions.json';
 
 async function loadCategories() {
     try {
+        
+
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
         const qData = await qResponse.json();
@@ -42,8 +44,13 @@ async function loadCategories() {
  */
 async function goToGame() {
     var selectedCategory = document.getElementById("selectCategory");
-    localStorage.setItem('selectedCategory', selectedCategory.options[selectedCategory.selectedIndex].text);
-    window.location.href = './game.html';
+
+    if (selectedCategory.options[selectedCategory.selectedIndex].text === "Choose a category") {
+        document.getElementById('selectionWarn').hidden = false;
+    } else {
+        localStorage.setItem('selectedCategory', selectedCategory.options[selectedCategory.selectedIndex].text);
+        window.location.href = './game.html';
+    }
 }
 
 /**
