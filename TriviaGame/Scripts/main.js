@@ -20,16 +20,26 @@ async function loadQuestionAndAnswers() {
     try {
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
-        const qData = await qResponse.json();
+        const qData = await qResponse.json();        
 
-        // Gets the max number of questions
-        const questionsNumber = qData.question.length;
-        localStorage.setItem('numberOfQuestions', questionsNumber);
+        // 2. Fetch answer JSON
+        const aResponse = await fetch(answerURL);
+        const aData = await aResponse.json();
+
+        var numberOfQuestions = 0;
 
         var isFirstQuestion = (localStorage.getItem('firstQuestion') === 'true');
         // Done to prevent weird issues with stringify and parse when aQ is empty (which also prevented elimination of answered questions)
         if (isFirstQuestion) {
-            questionId = Math.floor(Math.random() * (questionsNumber - 1)) + 1;
+            // This function is only called here because the random category would generate different categories between questions if called more than once
+            matchSelectedCategory(qData.question, aData.answer);
+
+            // Gets the max number of questions after getting only the questions with the correct category
+            questionsHolder = JSON.parse(localStorage.getItem('matchingQuestions'));
+            numberOfQuestions = questionsHolder.length;
+            localStorage.setItem('numberOfQuestions', numberOfQuestions);
+
+            questionId = Math.floor(Math.random() * (numberOfQuestions - 1)) + 1;
             var answeredQuestions = [questionId];
             localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
 
@@ -38,13 +48,16 @@ async function loadQuestionAndAnswers() {
 
             console.log(answeredQuestions);
         } else {
-            questionId = getRandomQuestion(0, questionsNumber);
+            numberOfQuestions = localStorage.getItem('numberOfQuestions');
+            questionId = getRandomQuestion(0, numberOfQuestions);
         }
+
+        const questions = JSON.parse(localStorage.getItem('matchingQuestions'));
         
-        const questionText = qData.question[questionId].questionText;
-        const questionImageAddress = qData.question[questionId].questionImageAddress;
-        const questionDescription = qData.question[questionId].questionDescription;
-        const questionTimer = qData.question[questionId].questionTimer;
+        const questionText = questions[questionId].questionText;
+        const questionImageAddress = questions[questionId].questionImageAddress;
+        const questionDescription = questions[questionId].questionDescription;
+        const questionTimer = questions[questionId].questionTimer;
 
         // Set the timer
         secondsLeft = questionTimer;
@@ -57,10 +70,8 @@ async function loadQuestionAndAnswers() {
         document.getElementById('questionImage').src = questionImageAddress;
         document.getElementById('questionImage').alt = questionDescription;
 
-        // 2. Fetch answer JSON
-        const aResponse = await fetch(answerURL);
-        const aData = await aResponse.json();
-        const answerObj = aData.answer[questionId];
+        const answer = JSON.parse(localStorage.getItem('matchingAnswers'));
+        const answerObj = answer[questionId];
 
         correctAnswer = answerObj.correct;
         const answers = answerObj.answers;
@@ -106,6 +117,46 @@ function getRandomQuestion(min, max) {
     localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
 
     return randomQuestionId;
+}
+
+/**
+ * Filters the questions to the selected category, moved to a function for the sake of 
+ * reading values in with localStorage and to allow for All Categories and Random Category.
+ * 
+ * Additionally, since we have 2 different arrays that we need to return, we store both arrays
+ * into localStorage and retrieve them when their information is needed instead of returning
+ * one array and retrieving the other.
+ * 
+ * @param {any} questions - List of all questions in json file to filter through
+ * @param {any} answers - List of all answers in json file to match with questions
+ * @returns - Nothing, just ends the function early if all categories are selected
+ */
+function matchSelectedCategory(questions, answers) {
+    var categories = JSON.parse(localStorage.getItem('categories'));
+    var matchingCategoryQuestions = [];
+    var matchingCategoryAnswers = [];
+    var selectedCategory = localStorage.getItem('selectedCategory');
+
+    if (selectedCategory === "All Categories") {
+        localStorage.setItem('matchingAnswers', JSON.stringify(answers));
+        localStorage.setItem('matchingQuestions', JSON.stringify(questions));
+        return;
+    }
+
+    if (selectedCategory === "Random Category") {
+        const categoryIndex = Math.floor(Math.random() * (categories.length - 0)) + 0;
+        selectedCategory = categories[categoryIndex];
+    }
+    
+    for (let i = 0; i < questions.length; i++) {
+        if (selectedCategory === questions[i].category) {
+            matchingCategoryQuestions.push(questions[i]);
+            matchingCategoryAnswers.push(answers[i]);
+        }
+    }
+
+    localStorage.setItem('matchingAnswers', JSON.stringify(matchingCategoryAnswers));
+    localStorage.setItem('matchingQuestions', JSON.stringify(matchingCategoryQuestions));
 }
 
 /**
@@ -228,7 +279,7 @@ function resumeGame() {
  */
 function restartGame() {
     localStorage.clear();                // wipe everything
-    window.location.href = './game.html';
+    window.location.href = './categories.html';
 }
 
 /*** 
