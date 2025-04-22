@@ -95,12 +95,12 @@ function setupNavigation() {
 
         // handles the selection of categories
         switch (event.key) {
-            case 'ArrowRight':
+            case 'ArrowLeft':
                 event.preventDefault();
                 currentIndex = (currentIndex + 1) % elements.length;
                 elements[currentIndex].focus();
                 break;
-            case 'ArrowLeft':
+            case 'ArrowRight':
                 event.preventDefault();
                 currentIndex = (currentIndex - 1 + elements.length) % elements.length;
                 elements[currentIndex].focus();
