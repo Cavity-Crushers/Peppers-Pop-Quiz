@@ -1,6 +1,30 @@
 ﻿// gameover.js
 "use strict";
 
+restoreGameViewSize();
+
+/** 
+ * Used to restore the size of the game between changes in windows.
+ * 
+ * @function restoreGameViewSize
+ * 
+ * @variable {HTMLElement} gameZone - The element with id "GameZone" whose size is being saved.
+ * @variable {number} width - The current width of the "GameZone" element in pixels.
+ * @variable {number} height - The current height of the "GameZone" element in pixels.
+ * 
+ * @returns {void} This function does not return a value
+ */
+function restoreGameViewSize() {
+    const gameZone = document.getElementById('GameZone');
+    const savedWidth = localStorage.getItem('gameZoneWidth');
+    const savedHeight = localStorage.getItem('gameZoneHeight');
+
+    if (savedWidth && savedHeight) {
+        gameZone.style.width = savedWidth + 'px';
+        gameZone.style.height = savedHeight + 'px';
+    }
+}
+
 /*────────────────────────────────────────────
   RANDOM “GAME OVER” MESSAGE
 ────────────────────────────────────────────*/
@@ -41,6 +65,7 @@ function getRandomGameOverMessage() {
  */
 function goToHome() {
     localStorage.clear();
+    saveGameViewSize();
     window.location.href = "./index.html";
 }
 
@@ -50,7 +75,28 @@ function goToHome() {
  */
 function playAgain() {
     localStorage.clear();
+    saveGameViewSize();
     window.location.href = './categories.html';
+}
+
+/**
+ * Used to save the size of the game between changes in windows.
+ * 
+ * @function saveGameViewSize
+ * 
+ * @variable {HTMLElement} gameZone - The element with id "GameZone" whose size is being saved.
+ * @variable {number} width - The current width of the "GameZone" element in pixels.
+ * @variable {number} height - The current height of the "GameZone" element in pixels.
+ * 
+ * @returns {void} This function does not return a value.
+ */
+function saveGameViewSize() {
+    const gameZone = document.getElementById('GameZone');
+    const width = gameZone.offsetWidth;
+    const height = gameZone.offsetHeight;
+
+    localStorage.setItem('gameZoneWidth', width);
+    localStorage.setItem('gameZoneHeight', height);
 }
 
 /*────────────────────────────────────────────
