@@ -206,6 +206,8 @@ async function checkAnswer(answerText) {
         correct = "Wrong!";
     }
 
+    secondsLeft = 0;
+
     localStorage.setItem('correct', correct);
     localStorage.setItem('score', gameScore.toString());
     // Now update lives & consecutive correct count
