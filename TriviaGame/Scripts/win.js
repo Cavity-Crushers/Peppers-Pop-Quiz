@@ -1,6 +1,6 @@
 // win.js
 
-var score = localStorage.getItem('score');
+const score = localStorage.getItem('score');
 const lives = localStorage.getItem('lives');
 const answeredQuestionText = localStorage.getItem('answeredQuestionText');
 const numOfQuestions = parseInt(localStorage.getItem('numberOfQuestions'), 10);
@@ -8,7 +8,8 @@ const answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'));
 const numOfAnsweredQuestions = answeredQuestions.length;
 const maxScore = numOfQuestions * 50;
 const correctAnswers = score / 50;
-// Show current lives as well
+
+// Show remaining
 document.getElementById('lives').textContent = `Remaining Lives: ${lives}`;
 
 // Sets <h1 id="score"> to the score
@@ -21,7 +22,6 @@ document.getElementById('correctAnswers').textContent = `${correctAnswers}/${num
  */
 function goToHome() {
     localStorage.clear();
-
     window.location.href = './index.html';
 }
 
@@ -30,7 +30,7 @@ function goToHome() {
  */
 function playAgain() {
     localStorage.clear();
-    window.location.href = './game.html';
+    window.location.href = './categories.html';
 }
 
 /**

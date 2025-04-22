@@ -130,7 +130,7 @@
 		},
 		{
 			"questionID": "q16",
-			"category": "Movies",
+			"category": "Movies and TV",
 			"questionText": "Who plays Professor Paul Hunham in The Holdovers (2023)?",
 			"questionImageAddress": "https://images.pexels.com/photos/625219/pexels-photo-625219.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 			"questionDescription": "Image of a chaulk board.",
@@ -138,7 +138,7 @@
 		},
 		{
 			"questionID": "q17",
-			"category": "Movies",
+			"category": "Movies and TV",
 			"questionText": "Who is the actor in the leading role of Sing Sing (2023)?",
 			"questionImageAddress": "https://images.pexels.com/photos/6064891/pexels-photo-6064891.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 			"questionDescription": "Image of a prison cell.",
