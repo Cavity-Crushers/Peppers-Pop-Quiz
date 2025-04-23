@@ -17,6 +17,8 @@ function toggleView()
     else {
         zone.style.width = "800px";
     }
+
+    saveGameViewSize();
 }
 
 /**
@@ -39,9 +41,6 @@ function saveGameViewSize()
     localStorage.setItem('gameZoneWidth', width);
     localStorage.setItem('gameZoneHeight', height);
 }
-
-// saves the current size of the game view right before unloading an old window.
-window.onbeforeunload = saveGameViewSize;
 
 /** 
  * Used to restore the size of the game between changes in windows.

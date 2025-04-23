@@ -57,13 +57,94 @@ async function goToGame() {
  * Takes the player back to the home page and clears their progress from that run
  */
 async function goToHome() {
-    window.location.href = './index.html';
     localStorage.clear();
+    saveGameViewSize();
+    window.location.href = './index.html';   
 }
+
+/**
+ * Used to save the size of the game between changes in windows.
+ * 
+ * @function saveGameViewSize
+ * 
+ * @variable {HTMLElement} gameZone - The element with id "GameZone" whose size is being saved.
+ * @variable {number} width - The current width of the "GameZone" element in pixels.
+ * @variable {number} height - The current height of the "GameZone" element in pixels.
+ * 
+ * @returns {void} This function does not return a value.
+ */
+function saveGameViewSize() {
+    const gameZone = document.getElementById('GameZone');
+    const width = gameZone.offsetWidth;
+    const height = gameZone.offsetHeight;
+
+    localStorage.setItem('gameZoneWidth', width);
+    localStorage.setItem('gameZoneHeight', height);
+}
+
+/**
+ * Allows for players to select answers with the arrow keys by moving right and left and
+ * pressing the "ENTER" key to select an answer
+ * 
+ * @returns In case no buttons are found it immediately returns
+ */
+function setupNavigation() {
+    const buttons = document.querySelectorAll('.redirection-button');
+    const dropdown = document.getElementById('selectCategory');
+    const elements = [dropdown, ...buttons]; 
+    let currentIndex = 0;
+    let inDropdownNavigation = false;
+
+    elements[currentIndex].focus();
+
+    document.addEventListener('keydown', (event) => {
+        const focusedElement = elements[currentIndex];
+
+        if (inDropdownNavigation && focusedElement.tagName === 'SELECT') {
+            event.preventDefault();
+            const selectedIndex = focusedElement.selectedIndex;
+            if (event.key === 'ArrowDown') {
+                focusedElement.selectedIndex = (selectedIndex + 1) % focusedElement.options.length;
+            } else if (event.key === 'ArrowUp') {
+                focusedElement.selectedIndex = (selectedIndex - 1 + focusedElement.options.length) % focusedElement.options.length;
+            } else if (event.key === 'Enter' || event.key === 'Escape') {
+                inDropdownNavigation = false;
+                focusedElement.blur(); 
+            }
+            return;
+        }
+
+        // handles the selection of categories
+        switch (event.key) {
+            case 'ArrowLeft':
+                event.preventDefault();
+                currentIndex = (currentIndex + 1) % elements.length;
+                elements[currentIndex].focus();
+                break;
+            case 'ArrowRight':
+                event.preventDefault();
+                currentIndex = (currentIndex - 1 + elements.length) % elements.length;
+                elements[currentIndex].focus();
+                break;
+            case 'Enter':
+            case ' ':
+                event.preventDefault();
+                if (focusedElement.tagName === 'SELECT') {
+                    inDropdownNavigation = true;
+                } else {
+                    focusedElement.click();
+                }
+                break;
+        }
+    });
+}
+
+
 
 /**
  * Calls all of the functions that do not run on answer selection to initialize all variables
  */
 window.addEventListener('DOMContentLoaded', () => {
     loadCategories();
+    setupNavigation();
 });

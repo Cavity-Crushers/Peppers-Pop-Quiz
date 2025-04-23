@@ -189,6 +189,76 @@
 				"Alberto Mielgo"
 			],
 			"correct": "Mike Flanagan"
+		},
+		{
+			"questionID": "q19",
+			"answers": [
+				"Tim Sweeney",
+				"Sydney Sweeney",
+				"Tim Cook",
+				"Alex Smith"
+			],
+			"correct": "Tim Sweeney"
+		},
+		{
+			"questionID": "q20",
+			"answers": [
+				"Library, 2nd floor across from Elevator",
+				"Corner of Culp across from metered parking lot",
+				"Centennial Hall, 1st Floor",
+				"Mini-Dome, near rifle range"
+			],
+			"correct": "Corner of Culp across from metered parking lot"
+		},
+		{
+			"questionID": "q21",
+			"answers": [
+				"Culp Center",
+				"Buc-Ridge",
+				"CPA",
+				"Mini-Dome's Basement"
+			],
+			"correct": "Mini-Dome's Basement"
+		},
+		{
+			"questionID": "q22",
+			"answers": [
+				"Chicken Jockey",
+				"Zombie",
+				"Pig",
+				"Armadillo"
+			],
+			"correct": "Pig"
+		},
+		{
+			"questionID": "q23",
+			"answers": [
+				"1.0",
+				"Beta 15.0",
+				"1.2",
+				"Beta 14.0"
+			],
+			"correct": "Beta 15.0"
+		},
+		{
+			"questionID": "q24",
+			"answers": [
+				"Season 8",
+				"Season 11",
+				"Season 6",
+				"Season 9"
+			],
+			"correct": "Season 8"
+		},
+		{
+			"questionID": "q25",
+			"answers": [
+				"Groundhog",
+				"Squirrel",
+				"Fox",
+				"Beaver"
+			],
+			"correct": "Beaver"
 		}
 	]
 }
