@@ -31,8 +31,14 @@ Sprint 2 -
   - Implemented sound effects for getting questions right and wrong, as well as game over
 
 Sprint 3 -
-- Goal: TODO
-  - Show different questions ...
+- Goal: Polishing gameplay and implementing the core gameplay loop
+  - Implemented the ability to answer different, random questions
+  - Added Categories and the ability to filter the questions you're asked
+  - Implemented a question timer
+  - Added pictures to questions
+  - Added randomized game over messages
+  - Researched persistence
+  - Added a pause menu overlay
  
 # Releases
 We did a release at the end of each sprint and they can be found on the right side Code page of the repository, or at this link:  
@@ -44,8 +50,13 @@ If you already have Node.js installed, skip to step 3.
 2. Install Node.js via the file just downloaded
 3. Open up VS and navigate to the project folder
 4. Right click on the TriviaGame folder and click "Open in terminal"
-5. Run "npm install --global http-server" (without the quotation marks) in the terminal
-6. Then run "http-server -p 8000" in the terminal
+5. Run "npm install --global http-server" (without the quotation marks) in the terminal  
+   a. If you get an error saying that you can't run scripts then open Powershell as an Adminstator  
+   b. Type "Set-ExecutionPolicy" and hit enter  
+   c. Type "Unrestricted" and hit enter  
+   d. Type "y" and hit enter  
+   e. Redo Step 5  
+7. Then run "http-server -p 8000" in the terminal
   a. If it says that this port is in use then choose a different port, typically increment by 1 to 8001
 8. Navigate to [http://localhost:8000/index.html] (change 8000 to whatever number you chose in the previous step) and you can play the game
 
