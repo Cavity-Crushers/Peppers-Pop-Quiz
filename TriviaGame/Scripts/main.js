@@ -206,8 +206,6 @@ async function checkAnswer(answerText) {
         correct = "Wrong!";
     }
 
-    secondsLeft = 0;
-
     localStorage.setItem('correct', correct);
     localStorage.setItem('score', gameScore.toString());
     // Now update lives & consecutive correct count
@@ -244,6 +242,7 @@ function updateLivesAndConsecutive(isCorrect) {
     // Save updated values
     localStorage.setItem('lives', lives.toString());
     localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
+    secondsLeft = 0;
 }
 
 // --------------------  PAUSE SYSTEM  --------------------
