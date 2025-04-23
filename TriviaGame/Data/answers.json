@@ -259,6 +259,16 @@
 				"Beaver"
 			],
 			"correct": "Beaver"
+		},
+		{
+			"questionID": "q26",
+			"answers": [
+				"New Jersey",
+				"New York City",
+				"Nashville",
+				"Los Angeles"
+			],
+			"correct": "New Jersey"
 		}
 	]
 }
