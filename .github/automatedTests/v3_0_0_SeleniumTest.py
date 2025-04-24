@@ -14,26 +14,21 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 try:
-    driver.get("http://localhost:3000/simple.html")
+    driver.get("http://localhost:2357/simple.html")
     assert "4250 Honors Project" in driver.title
 
-    s1Button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.ID, "s1"))
+    shiftViewButton = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "shift-view-button"))
     )
-    s1Button.click()
+    shiftViewButton.click()
 
-    stateChange1 = driver.find_element(By.TAG_NAME, "body").value_of_css_property("background-color")
-    print(f"Background color after clicking #s1: {stateChange1}")
-    assert stateChange1 == "rgba(144, 238, 144, 1)" 
-
-    s2Button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.ID, "s2"))
+    shiftViewToggle = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "GameZone"))
     )
-    s2Button.click()
-
-    stateChange2 = driver.find_element(By.TAG_NAME, "body").value_of_css_property("color")
-    print(f"Font color after clicking #s2: {stateChange2}")
-    assert stateChange2 == "rgba(255, 0, 0, 1)"
+    size = shiftViewToggle
+    width = size['width']
+    print(f"Rendered GameSize: width={width}px")
+    assert shiftViewToggle == "800px"
 
 finally:
     driver.quit()
