@@ -1,8 +1,9 @@
 ﻿// main.js
 
-// Get the file paths of our questions and answers
+// Get the file paths of our questions and answers and create a constant floor for random
 const questionURL = './Data/questions.json';
 const answerURL = './Data/answers.json';
+const randomNumberMin = 0;
 
 // We'll store references to the buttons, correct answer, timer, correctness, and questionID
 let buttons = [];
@@ -39,7 +40,8 @@ async function loadQuestionAndAnswers() {
             numberOfQuestions = questionsHolder.length;
             localStorage.setItem('numberOfQuestions', numberOfQuestions);
 
-            questionId = Math.floor(Math.random() * (numberOfQuestions - 1)) + 1;
+            // No floor since the floor was equal to 0, leaving comment in case it comes up at a later date that we do need a floor here
+            questionId = Math.floor(Math.random() * (numberOfQuestions));
             var answeredQuestions = [questionId];
             localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
 
@@ -49,7 +51,7 @@ async function loadQuestionAndAnswers() {
             console.log(answeredQuestions);
         } else {
             numberOfQuestions = localStorage.getItem('numberOfQuestions');
-            questionId = getRandomQuestion(0, numberOfQuestions);
+            questionId = getRandomQuestion(randomNumberMin, numberOfQuestions);
         }
 
         const questions = JSON.parse(localStorage.getItem('matchingQuestions'));
@@ -144,7 +146,7 @@ function matchSelectedCategory(questions, answers) {
     }
 
     if (selectedCategory === "Random Category") {
-        const categoryIndex = Math.floor(Math.random() * (categories.length - 0)) + 0;
+        const categoryIndex = Math.floor(Math.random() * (categories.length - randomNumberMin)) + randomNumberMin;
         selectedCategory = categories[categoryIndex];
     }
     
