@@ -14,7 +14,7 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 try:
-    driver.get("http://localhost:2357/simple.html")
+    driver.get("http://localhost:2357/index.html")
     assert "4250 Honors Project" in driver.title
 
     shiftViewButton = WebDriverWait(driver, 10).until(
