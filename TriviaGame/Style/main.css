@@ -4,8 +4,8 @@
  * #ID GameZone
  */
 #GameZone {
-    width: 450px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     box-sizing: border-box;
     max-width: 90%;
     background-color: #2C3E50;

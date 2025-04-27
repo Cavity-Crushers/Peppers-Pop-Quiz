@@ -13,28 +13,34 @@
     <link rel="icon" type="image/x-icon" href="../Data/FaviconTemp.png">
 </head>
 <body>
-    <!-- #ID GameZone: results container -->
-    <div id="GameZone">
-        <!-- #ID answeredQuestionText -->
-        <h3 id="answeredQuestionText"></h3>
-        <!-- #ID selectedAnswer -->
-        <h3 id="selectedAnswer"></h3>
-        <!-- #ID correct -->
-        <h1 id="correct"></h1>
-        <!-- #ID score -->
-        <h1 id="score"></h1>
-        <!-- #ID lives -->
-        <h2 id="lives"></h2>
 
-        <!-- .class button-container -->
+    <!-- #ID GameZone: main container -->
+    <div id="GameZone">
+
+        <!-- .class question-box: groups the question + your answer + feedback -->
+        <div class="question-box">
+            <!-- #ID answeredQuestionText -->
+            <h3 id="answeredQuestionText"></h3>
+            <!-- #ID selectedAnswer -->
+            <h3 id="selectedAnswer"></h3>
+            <!-- #ID correct -->
+            <h1 id="correct"></h1>
+        </div>
+
+        <!-- .class scoreboard: shows score & lives side-by-side -->
+        <div class="scoreboard">
+            <span>Score: <strong id="score"></strong></span>
+            <span>Lives: <strong id="lives"></strong></span>
+        </div>
+
+        <!-- .class button-container: Continue/Quit -->
         <div class="button-container">
-            <!-- .class redirection-button -->
             <button class="redirection-button" type="button" onclick="goToGame()">Continue</button>
-            <!-- .class redirection-button -->
             <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
         </div>
     </div>
 
+    <!-- load scripts -->
     <script src="scripts/view.js"></script>
     <script src="scripts/results.js"></script>
 </body>
