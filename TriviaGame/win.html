@@ -1,3 +1,4 @@
+<!-- File: win.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,32 +11,28 @@
     <title>Pepper's Pop Quiz - You Win</title>
     <link rel="stylesheet" href="Style/win.css">
     <link rel="icon" type="image/x-icon" href="../Data/FaviconTemp.png">
-
-    <!-- win.html
-     Author: JL Graham
-     Date: 04/20/24
-     Last Revised: 04/21/24
-     Description: Page that appears after winning the game
-     -->
 </head>
 <body>
+    <!-- #ID GameZone: win screen container -->
     <div id="GameZone">
+        <!-- #ID winTitle -->
         <h1 id="winTitle">YOU WIN!</h1>
-
+        <!-- #ID score -->
         <h2 id="score"></h2>
-
+        <!-- #ID lives -->
         <h2 id="lives"></h2>
-
+        <!-- #ID correctAnswers -->
         <h2 id="correctAnswers"></h2>
 
-        <!-- Buttons to Quit or Play Again -->
+        <!-- .class button-container -->
         <div class="button-container">
+            <!-- .class redirection-button -->
             <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
+            <!-- .class redirection-button -->
             <button class="redirection-button" type="button" onclick="playAgain()">Play Again</button>
         </div>
     </div>
 
-    <!-- Load Scripts -->
     <script src="scripts/view.js"></script>
     <script src="scripts/win.js"></script>
 </body>
