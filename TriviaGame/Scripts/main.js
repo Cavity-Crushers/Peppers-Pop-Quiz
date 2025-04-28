@@ -344,6 +344,8 @@ function setupNavigation() {
             buttons2[currentIndex].focus();
         }
 
+        // bleh
+
         // Ignore key navigation while paused
         if (isPaused) return;
 
