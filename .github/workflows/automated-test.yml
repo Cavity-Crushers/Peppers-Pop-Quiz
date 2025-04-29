@@ -24,13 +24,14 @@ jobs:
         pip install selenium webdriver-manager
 
     - name: Start Local Web Server
+      working-directory: TriviaGame
       run: |
-        python -m http.server 2357 &
+        python -m http.server 8000 &
         sleep 3  
 
     - name: Run Selenium Test
       run: |
-        python v3_0_0_SeleniumTest.py
+        python .automatedTests/v3_0_0_SeleniumTest.py
 
     - name: Stop Web Server
       if: always()
