@@ -243,7 +243,7 @@ function updateLivesAndConsecutive(isCorrect) {
     // Save updated values
     localStorage.setItem('lives', lives.toString());
     localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
-    secondsLeft = 0;
+    secondsLeft = 1;
 }
 
 // --------------------  PAUSE SYSTEM  --------------------
