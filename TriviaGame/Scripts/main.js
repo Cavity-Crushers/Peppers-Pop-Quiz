@@ -1,8 +1,8 @@
 ﻿// main.js
 
 // Get the file paths of our questions and answers and create a constant floor for random
-const questionURL = './Data/questions.json';
-const answerURL = './Data/answers.json';
+const questionURL = '/Data/questions.json';
+const answerURL = '/Data/answers.json';
 const randomNumberMin = 0;
 
 // We'll store references to the buttons, correct answer, timer, correctness, and questionID
@@ -284,7 +284,7 @@ function resumeGame() {
 function restartGame() {
     localStorage.clear();                // wipe everything
     saveGameViewSize();
-    window.location.href = './categories.html';
+    window.location.href = '/categories.html';
 }
 
 /*** 
@@ -294,7 +294,7 @@ function restartGame() {
 function quitGame() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './index.html';
+    window.location.href = '/index.html';
 }
 
 /**

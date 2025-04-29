@@ -47,7 +47,7 @@ document.getElementById('correctAnswers').textContent = `${correctAnswers}/${num
 function goToHome() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './index.html';
+    window.location.href = '/index.html';
 }
 
 /**
@@ -56,7 +56,7 @@ function goToHome() {
 function playAgain() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './categories.html';
+    window.location.href = '/categories.html';
 }
 
 /**

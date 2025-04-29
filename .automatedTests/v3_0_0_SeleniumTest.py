@@ -20,6 +20,7 @@ chrome_options.add_argument('--ignore-ssl-errors')
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
+
 try:
     # 1) Navigates to the localhosted server
     print("1) Opening Website")
@@ -41,9 +42,6 @@ try:
     assert width == "800px", f"Expected GameZone to be 800px, but got {width}"
     print(f"Width shifted to 800px")
 
-    button = WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.ID, "shift-view-button"))
-    )
     button.click()
 
     game_zone = driver.find_element(By.ID, "GameZone")
@@ -54,13 +52,7 @@ try:
     assert width == "400px", f"Expected GameZone to be 400px, but got {width}"
     print(f"Width shifted to 400px")
 
-    button = WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.ID, "shift-view-button"))
-    )
     button.click()
-
-    game_zone = driver.find_element(By.ID, "GameZone")
-    width = game_zone.value_of_css_property("width")
 
     button = WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.CLASS_NAME, "index-button"))
@@ -230,7 +222,7 @@ try:
                 answer.click()
                 break
 
-        time.sleep(1)
+        time.sleep(2)
 
         lives = driver.execute_script("return localStorage.getItem('lives');")
         print(f"Lives remaining: {lives}")
@@ -584,6 +576,9 @@ try:
     print(f"Timer after pausing: {timer_after}")
 
     assert timer_before == timer_after, "Expected timer to freeze when pause menu is shown."
+
+    game_zone = driver.find_element(By.ID, "GameZone")
+    width = game_zone.value_of_css_property("width")
 
     assert width == "800px", f"Expected GameZone to be 800px, but got {width}"
     print(f"Width still 800px")
