@@ -244,6 +244,8 @@ try:
     # 9) This tests the "Play Again" button on gameOver.html
     print("9) This tests the Play Again button on gameOver.html")
 
+    time.sleep(2)
+
     button = WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.ID, "game-over-play-again-button"))
     )
