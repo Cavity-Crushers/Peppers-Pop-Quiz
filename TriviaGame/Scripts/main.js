@@ -257,6 +257,7 @@ let isPaused = false;
  */
 function pauseGame() {
     isPaused = true;
+    playGameMusic(isPaused, false);
     document.getElementById('pauseMenu').classList.remove('hidden');
     timerDisplay.classList.add('blinking');
     timerDisplay.style.color = "blue";
@@ -268,6 +269,7 @@ function pauseGame() {
  */
 function resumeGame() {
     isPaused = false;
+    playGameMusic(isPaused, false);
     document.getElementById('pauseMenu').classList.add('hidden');
     timerDisplay.classList.remove('blinking');
     timerDisplay.style.color = "black";
@@ -367,8 +369,9 @@ const timerDisplay = document.getElementById("timer");
 
 /**
  * Updates the timer every second.
+ * 
+ * @returns - If the game is paused, don't update timer
  */
-
 function updateTimer() {
     if (isPaused) { return }
 
@@ -389,6 +392,33 @@ function updateTimer() {
 }
 
 /**
+ * Used to play the intense action music when a player is trying to answer a question
+ * 
+ * Intense Dark Action Orchestra by DeVern -- https://freesound.org/s/475592/ -- License: Attribution 3.0
+ * 
+ * @param {any} resultAudio - Audio for user feedback
+ */
+let gameAudio;
+function playGameMusic(isGamePaused, isFirstLoad) {
+    // Only create the audio element once
+    if (isFirstLoad) {
+        gameAudio = new Audio("https://cdn.freesound.org/previews/475/475592_2866779-lq.mp3");
+        gameAudio.type = "audio/mpeg";
+    }
+
+    if (isGamePaused) {
+        gameAudio.pause();
+    }
+    else {
+        gameAudio.play();
+    }
+
+    gameAudio.play().catch(e => {
+        console.error("Playback failed:", e);
+    });
+}
+
+/**
  * Calls all of the functions that do not run on answer selection to initialize all variables
  */
 window.addEventListener('DOMContentLoaded', () => {
@@ -400,4 +430,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Then load the question & answers data
     loadQuestionAndAnswers();
+
+    // Then play the music
+    playGameMusic(false, true);
 });
