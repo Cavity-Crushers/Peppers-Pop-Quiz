@@ -21,7 +21,7 @@ async function loadQuestionAndAnswers() {
     try {
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
-        const qData = await qResponse.json();        
+        const qData = await qResponse.json();
 
         // 2. Fetch answer JSON
         const aResponse = await fetch(answerURL);
@@ -55,7 +55,7 @@ async function loadQuestionAndAnswers() {
         }
 
         const questions = JSON.parse(localStorage.getItem('matchingQuestions'));
-        
+
         const questionText = questions[questionId].questionText;
         const questionImageAddress = questions[questionId].questionImageAddress;
         const questionDescription = questions[questionId].questionDescription;
@@ -76,6 +76,7 @@ async function loadQuestionAndAnswers() {
         const answerObj = answer[questionId];
 
         correctAnswer = answerObj.correct;
+        localStorage.setItem('correctAnswerCheck', correctAnswer);
         const answers = answerObj.answers;
 
         // 3. For each button, set the inner text to one of the answers
@@ -89,7 +90,7 @@ async function loadQuestionAndAnswers() {
         updateTimer();
         timerInterval = setInterval(updateTimer, 1000);
 
-        
+
     } catch (err) {
         console.error('Error loading question or answers:', err);
     }
@@ -149,7 +150,7 @@ function matchSelectedCategory(questions, answers) {
         const categoryIndex = Math.floor(Math.random() * (categories.length - randomNumberMin)) + randomNumberMin;
         selectedCategory = categories[categoryIndex];
     }
-    
+
     for (let i = 0; i < questions.length; i++) {
         if (selectedCategory === questions[i].category) {
             matchingCategoryQuestions.push(questions[i]);
@@ -194,17 +195,15 @@ function initializeGameData() {
 async function checkAnswer(answerText) {
     var gameScore = parseInt(localStorage.getItem('score'), 10)
     localStorage.setItem('selectedAnswer', answerText);
-    
-    if (answerText === correctAnswer)
-    {
+
+    if (answerText === correctAnswer) {
         correct = "Correct!";
         gameScore += 50;
     }
     else if (answerText === "No answer selected.") {
         correct = "You ran out of time!";
     }
-    else
-    {
+    else {
         correct = "Wrong!";
     }
 
@@ -321,7 +320,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'p') {
         e.preventDefault();
         isPaused ? resumeGame() : pauseGame();
-    } 
+    }
 });
 
 // --------------------  NAVIGATION (update)  --------------------
@@ -359,7 +358,7 @@ function setupNavigation() {
         } else if (event.key === 'Enter') {
             event.preventDefault();
             buttons[currentIndex].click();
-        } 
+        }
     });
 }
 

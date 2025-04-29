@@ -8,7 +8,7 @@
     <meta name="description" content="SE1 Sprint 3 Win Page">
     <meta name="keywords" content="se1, sprint 3, win page">
     <title>Pepper's Pop Quiz - You Win</title>
-    <link rel="stylesheet" href="Style/win.css">
+    <link rel="stylesheet" href="./Style/win.css">
     <link rel="icon" type="image/x-icon" href="../Data/FaviconTemp.png">
 
     <!-- win.html
@@ -30,13 +30,13 @@
 
         <!-- Buttons to Quit or Play Again -->
         <div class="button-container">
-            <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
-            <button class="redirection-button" type="button" onclick="playAgain()">Play Again</button>
+            <button id="win-quit-button" class="redirection-button" type="button" onclick="goToHome()">Quit</button>
+            <button id="win-play-again-button" class="redirection-button" type="button" onclick="playAgain()">Play Again</button>
         </div>
     </div>
 
     <!-- Load Scripts -->
-    <script src="scripts/view.js"></script>
-    <script src="scripts/win.js"></script>
+    <script src="./scripts/view.js"></script>
+    <script src="./scripts/win.js"></script>
 </body>
 </html>
