@@ -4,66 +4,71 @@
  * #ID GameZone
  */
 #GameZone {
-    width: 400px;
-    height: 400px;
-    box-sizing: border-box;
-    max-width: 800px;
-    max-height: 400px;
-    background-color: lightblue;
-    padding: 5px;
-    position: relative;
+    max-width: 90%;
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative; /* positioning context for pause and timer */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /*───────────────────────────────────────────────
-  PAUSE‑MENU SUPPORT
+  PAUSE-MENU SUPPORT
 ───────────────────────────────────────────────*/
 
-/* 1.  Make #GameZone a positioning context so the ⏸ button
-      can sit in its top‑right corner. */
-#GameZone {
-    position: relative; /* new — keeps absolute children inside */
-}
-
 /* 2.  Pause button (⏸ icon) */
+/**
+ * #ID pauseBtn
+ */
 #pauseBtn {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 4px 8px;
+    top: 12px;
+    right: 12px;
+    padding: 6px 10px;
+    background: #ECF0F1;
+    color: #2C3E50;
     border: none;
-    background: #fff;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-    box-shadow: 0 0 4px rgba(0 0 0 /.25);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-    #pauseBtn:hover {
-        background: #f0f0f0;
+    #pauseBtn:hover,
+    #pauseBtn:focus {
+        background: #BDC3C7;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+        outline: none;
     }
-
 
 /**
  * Styles the timer.
  * 
- * .class answer-button
+ * #ID timer
  */
 #timer {
     position: absolute;
-    top: 8px;
-    left: 10px;
-    font-size: 16px;
+    top: 12px;
+    left: 12px;
+    padding: 6px 10px;
+    font-size: 1rem;
     font-weight: bold;
-    padding: 4px 8px;
+    background: #ECF0F1;
+    color: #2C3E50;
     border: none;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 4px rgba(0 0 0 /.25);
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
 }
 
 /**
  * Handles blinking animation
-*/
+ */
 @keyframes blink-opacity {
     0% {
         opacity: 1;
@@ -82,17 +87,18 @@
     animation: blink-opacity 1s infinite;
 }
 
-    
-/* 3.  Full‑screen overlay that appears when paused.
-      .hidden is toggled by JS to hide/show it. */
+/* 3.  Full-screen overlay that appears when paused. */
+/**
+ * .class overlay
+ */
 .overlay {
     position: fixed;
-    inset: 0; /* top:0 right:0 bottom:0 left:0 */
-    background: rgba(0 0 0 / 0.75); /* semi‑transparent black */
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* above everything else */
+    z-index: 9999;
 }
 
 .hidden {
@@ -100,8 +106,12 @@
 }
 
 /* 4.  Center panel inside overlay */
+/**
+ * .class overlay-content
+ */
 .overlay-content {
-    background: #e0e0e0;
+    background: #ECF0F1;
+    color: #2C3E50;
     padding: 2rem 3rem;
     border-radius: 8px;
     text-align: center;
@@ -112,13 +122,23 @@
     }
 
     .overlay-content button {
-        margin: .5rem;
-        padding: .5rem 1.25rem;
+        margin: 0.5rem;
+        padding: 0.75rem 1.5rem;
         font-size: 1rem;
+        background: #3498DB;
+        color: #ECF0F1;
+        border: none;
+        border-radius: 6px;
         cursor: pointer;
+        transition: background 0.2s ease, box-shadow 0.2s ease;
     }
 
-
+        .overlay-content button:hover,
+        .overlay-content button:focus {
+            background: #2980B9;
+            box-shadow: 0 0 8px rgba(41, 128, 185, 0.7);
+            outline: none;
+        }
 
 /**
  * Used to change the styling of the question's image.
@@ -126,8 +146,10 @@
  * #ID questionImage
  */
 #questionImage {
-    max-width: 115px;
-    max-height: 115px;
+    max-width: 120px;
+    max-height: 120px;
+    margin: 0 auto 20px;
+    display: block;
 }
 
 /**
@@ -137,18 +159,24 @@
  */
 .answer-button {
     display: block;
-    margin: 10px 0;
-    padding: 10px;
-    width: 200px;
-    font-size: 12px;
+    width: 100%;
+    margin: 12px 0;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #ECF0F1;
+    color: #2C3E50;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/**
- * Adds focus styling to selected answer buttons.
- * 
- * .class answer-button:focus
- */
+    .answer-button:hover,
     .answer-button:focus {
-        outline: 3px solid #007BFF;
-        background-color: #e0f0ff;
+        background-color: #3498DB;
+        color: #ECF0F1;
+        transform: translateX(4px);
+        box-shadow: 0 0 8px rgba(52, 152, 219, 0.7);
+        outline: none;
     }

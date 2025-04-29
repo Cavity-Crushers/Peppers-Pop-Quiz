@@ -20,10 +20,10 @@ document.getElementById('selectedAnswer').textContent = selectedAnswer;
 document.getElementById('correct').textContent = correctness;
 
 // Show current lives as well
-document.getElementById('lives').textContent = `Lives: ${lives}`;
+document.getElementById('lives').textContent = ` ${lives}`;
 
 // Sets <h1 id="score"> to the score
-document.getElementById('score').textContent = `Score: ${score}`;
+document.getElementById('score').textContent = ` ${score}`;
 
 // If lives <= 0, go to game over
 if (parseInt(lives, 10) <= 0) {

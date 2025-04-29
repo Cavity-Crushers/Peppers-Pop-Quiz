@@ -1,44 +1,46 @@
+<!-- File: results.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="JL Graham">
     <meta name="date" content="2025-04-09">
-    <meta name="last revised" content="2024-04-14">
+    <meta name="last revised" content="2024-04-21">
     <meta name="description" content="SE1 Sprint 2 Results Page">
     <meta name="keywords" content="se1, sprint 2, results page, cavity crushers">
     <title>Pepper's Pop Quiz - Results</title>
     <link rel="stylesheet" href="Style/results.css">
     <link rel="icon" type="image/x-icon" href="../Data/FaviconTemp.png">
-
-    <!-- results.html
-     Author: JL Graham
-     Date: 04/09/24
-     Last Revised: 04/21/24
-     Description: Results page that appears after answering a question
-     -->
 </head>
 <body>
 
+    <!-- #ID GameZone: main container -->
     <div id="GameZone">
-        <h3 id="answeredQuestionText"></h3>
 
-        <h3 id="selectedAnswer"></h3>
+        <!-- .class question-box: groups the question + your answer + feedback -->
+        <div class="question-box">
+            <!-- #ID answeredQuestionText -->
+            <h3 id="answeredQuestionText"></h3>
+            <!-- #ID selectedAnswer -->
+            <h3 id="selectedAnswer"></h3>
+            <!-- #ID correct -->
+            <h1 id="correct"></h1>
+        </div>
 
-        <h1 id="correct"></h1>
+        <!-- .class scoreboard: shows score & lives side-by-side -->
+        <div class="scoreboard">
+            <span>Score: <strong id="score"></strong></span>
+            <span>Lives: <strong id="lives"></strong></span>
+        </div>
 
-        <h1 id="score"></h1>
-
-        <h2 id="lives"></h2>
-
-        <!-- Button to quit and button to continue next to each other -->
+        <!-- .class button-container: Continue/Quit -->
         <div class="button-container">
             <button class="redirection-button" type="button" onclick="goToGame()">Continue</button>
             <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
         </div>
     </div>
 
-    <!-- Load Scripts -->
+    <!-- load scripts -->
     <script src="scripts/view.js"></script>
     <script src="scripts/results.js"></script>
 </body>

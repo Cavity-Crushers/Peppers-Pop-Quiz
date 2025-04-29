@@ -4,31 +4,49 @@
  * #ID GameZone
  */
 #GameZone {
-    width: 400px;
-    height: 400px;
+    max-width: 90%;
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
     box-sizing: border-box;
-    max-width: 800px;
-    max-height: 400px;
-    background-color: lightblue;
-    padding: 20px;
 }
 
 /**
-    Allows the buttons for Quit and Continue to display on the same line
-*/
+ * Allows the buttons for Quit and Continue to display on the same line.
+ *
+ * .class button-container
+ */
 .button-container {
     display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: auto;
 }
 
 /**
-    Gives the buttons used to navigate to different pages their own look separate from buttons
-    .class redirection-button
-*/
+ * Gives the buttons used to navigate to different pages their own look
+ * separate from buttons.
+ *
+ * .class redirection-button
+ */
 .redirection-button {
-    margin: 10px 10px;
-    padding: 10px;
-    width: 100px;
-    font-size: 16px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #3498DB;
+    color: #ECF0F1;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    margin: auto;
 }
 
     /**
@@ -37,6 +55,7 @@
  * .class redirection-button:focus
  */
     .redirection-button:focus {
-        outline: 3px solid #007BFF;
-        background-color: #e0f0ff;
+        outline: 3px solid #2980B9;
+        background-color: #2980B9;
+        box-shadow: 0 0 8px rgba(41, 128, 185, 0.7);
     }

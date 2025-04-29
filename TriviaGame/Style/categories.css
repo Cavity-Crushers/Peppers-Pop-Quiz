@@ -4,55 +4,77 @@
  * #ID GameZone
  */
 #GameZone {
-    width: 400px;
-    height: 400px;
-    box-sizing: border-box;
-    max-width: 800px;
-    max-height: 400px;
-    background-color: lightblue;
-    padding: 20px;
+    max-width: 90%;
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /**
-    Allows the buttons for Quit and Continue to display on the same line
-*/
+ * Allows the buttons for Quit and Continue to display on the same line.
+ *
+ * .class button-container
+ */
 .button-container {
     display: flex;
-    text-align: center;
-    margin-top: 200px;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: auto;
 }
 
 /**
-    Gives the buttons used to navigate to different pages their own look separate from the answer buttons
-*/
+ * Gives the buttons used to navigate to different pages their own look
+ * separate from the answer buttons.
+ *
+ * .class redirection-button
+ */
 .redirection-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #3498DB;
+    color: #ECF0F1;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
     margin: auto;
-    padding: 10px;
-    width: 100px;
-    font-size: 16px;
 }
 
     /**
- * Adds focus styling to selected buttons.
- * 
- * .class redirection-button:focus
- */
+     * Adds focus styling to selected buttons.
+     *
+     * .class redirection-button:focus
+     */
     .redirection-button:focus {
-        outline: 3px solid #007BFF;
-        background-color: #e0f0ff;
+        outline: 3px solid #2980B9;
+        background-color: #2980B9;
+        box-shadow: 0 0 8px rgba(41, 128, 185, 0.7);
     }
 
 /**
- * Adds focus styling to selected buttons.
- * 
+ * Adds focus styling to the category selector.
+ *
  * #ID selectCategory:focus
  */
 #selectCategory:focus {
-    outline: 3px solid #007BFF;
-    background-color: #e0f0ff;
+    outline: 3px solid #3498DB;
+    background-color: #34495E;
+    color: #ECF0F1;
 }
 
+/**
+ * Utility class to center elements.
+ *
+ * .class center
+ */
 .center {
     margin: auto;
 }

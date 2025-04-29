@@ -1,3 +1,4 @@
+<!-- File: categories.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +11,24 @@
     <title>Pepper's Pop Quiz - Categories</title>
     <link rel="stylesheet" href="Style/categories.css">
     <link rel="icon" type="image/x-icon" href="../Data/FaviconTemp.png">
-
-    <!-- categories.html
-     Author: JL Graham
-     Date: 04/21/24
-     Last Revised: 04/21/24
-     Description: Page that allows players to select the categories of questions they want to answer
-     -->
+    <!-- Page that allows players to select the categories of questions they want to answer -->
 </head>
 <body>
-
+    <!-- #ID GameZone: main container for category selection -->
     <div id="GameZone">
+        <!-- #ID selectCategory: category dropdown -->
         <select id="selectCategory">
             <option>Choose a category</option>
         </select>
+
+        <!-- #ID selectionWarn: warning if no category chosen -->
         <h3 id="selectionWarn" hidden>You must select a category to continue.</h3>
-        <!-- Button to quit and button to continue next to each other -->
+
+        <!-- .class button-container: holds Continue/Quit side-by-side -->
         <div class="button-container">
+            <!-- .class redirection-button -->
             <button class="redirection-button" type="button" onclick="goToGame()">Continue</button>
+            <!-- .class redirection-button -->
             <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
         </div>
     </div>

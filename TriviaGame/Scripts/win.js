@@ -39,7 +39,7 @@ document.getElementById('lives').textContent = `Remaining Lives: ${lives}`;
 // Sets <h1 id="score"> to the score
 document.getElementById('score').textContent = `Score: ${score}/${maxScore}`;
 
-document.getElementById('correctAnswers').textContent = `${correctAnswers}/${numOfQuestions} questions answered correctly`;
+document.getElementById('correctAnswers').textContent = `${correctAnswers}/${numOfQuestions} questions correct`;
 
 /**
  * Quits the game: send user back to home page (index.html) and clears the local storage

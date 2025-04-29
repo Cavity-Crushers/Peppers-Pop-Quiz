@@ -1,28 +1,29 @@
+<!-- File: index.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Pepper's Pop Quiz</title>
     <link rel="stylesheet" href="Style/main.css">
     <link rel="icon" type="image/x-icon" href="../Data/FaviconTemp.png">
 </head>
-
 <body>
+    <!-- #ID GameZone: landing screen container -->
     <div id="GameZone">
         <h1>Welcome to Trivia!</h1>
 
+        <!-- .class index-button -->
         <form action="categories.html" method="GET">
             <button class="index-button" type="submit">Start</button>
         </form>
 
-        <br/>
+        <br />
 
+        <!-- .class index-button -->
         <button class="index-button" onclick="toggleView()">Shift View</button>
     </div>
 
     <script src="scripts/view.js"></script>
     <script src="scripts/index.js"></script>
 </body>
-
 </html>

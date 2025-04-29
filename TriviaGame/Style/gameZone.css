@@ -4,11 +4,17 @@
  * #ID GameZone
  */
 #GameZone {
-    width: 400px;
-    height: 400px;
+    max-width: 90%;
+    background-color: #2C3E50;
+    color: #ECF0F1;
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
     box-sizing: border-box;
-    max-width: 800px;
-    max-height: 400px;
-    background-color: lightblue;
-    padding: 20px;
 }
