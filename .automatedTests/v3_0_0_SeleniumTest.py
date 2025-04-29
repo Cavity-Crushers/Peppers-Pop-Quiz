@@ -376,7 +376,7 @@ try:
         print(f"Correct Answer: {correct_answer}")
 
         for answer in answers:
-            if answer.text == correct_answer:
+            if answer.text != correct_answer:
                 answer.click()
                 break
 
@@ -396,12 +396,11 @@ try:
             page_title = driver.title
             print(f"Current Page: {page_title}")
         else:
-            assert page_title == "Pepper's Pop Quiz - You Win", f"Expected title to be 'Pepper's Pop Quiz - You Win', but got {page_title}"
-            assert int(lives) > 2, f"Expected lives to be greater than 2, but got {lives}"
+            assert page_title == "Pepper's Pop Quiz - Game Over", f"Expected title to be 'Pepper's Pop Quiz - Game Over', but got {page_title}"
             break
 
     button = WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.ID, "win-quit-button"))
+        EC.element_to_be_clickable((By.ID, "game-over-quit-button"))
     )
     button.click()
 
