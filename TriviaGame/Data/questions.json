@@ -207,6 +207,78 @@
 			"questionImageAddress": "https://images.squarespace-cdn.com/content/v1/5e5cd082c50ea102c52e5bb0/b18024a9-3ca6-4bb2-ad3a-f859d3ea65fb/dendrocalamus-bamboo-water-production.jpg",
 			"questionDescription": "Image of a bamboo river",
 			"questionTimer": 20
+		},
+		{
+			"questionID": "26",
+			"category": "Computing",
+			"questionText": "What was Jake Gillenwater's first class he taught at ETSU",
+			"questionImageAddress": "https://www.slashfilm.com/img/gallery/jake-gyllenhaal-related-a-lot-to-donnie-darko-except-for-all-that-rabbit-stuff/l-intro-1672870427.jpg",
+			"questionDescription": "Jake Gyllenhaal in Donnie Darko",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "27",
+			"category": "Computing",
+			"questionText": "What is Jake Gillenwater's least favorite category in this game?",
+			"questionImageAddress": "https://avatars.githubusercontent.com/u/11872616?v=4",
+			"questionDescription": "Jake Gillenwater GitHub photo",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "28",
+			"category": "Gaming",
+			"questionText": "What is Minecraft's most popular mod (by downloads and non biome addition)?",
+			"questionImageAddress": "https://cdn-raw.modrinth.com/app-landing/app-screenshot.webp",
+			"questionDescription": "Modrinth app",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "29",
+			"category": "Computing",
+			"questionText": "Who won the Kinser-Beaver war of 2025?",
+			"questionImageAddress": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdbWiDmFa883OSJq3dsrofk6bIMEtx__-w4w&s",
+			"questionDescription": "Beaver at front door",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "30",
+			"category": "Computing",
+			"questionText": "If x = 10 and y = 9, what is x + y?",
+			"questionImageAddress": "https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/numfractions1009bw_p.png",
+			"questionDescription": "Guy drawing on whiteboard meme",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "31",
+			"category": "Movies and TV",
+			"questionText": "Which of these shows is about practicing a scenario with actors?",
+			"questionImageAddress": "https://decider.com/wp-content/uploads/2022/10/NATHAN-FIELDER-METS.jpg",
+			"questionDescription": "Nathan Fielder at Mets game",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "32",
+			"category": "Movies and TV",
+			"questionText": "How many movies are in the Saw franchise?",
+			"questionImageAddress": "https://m.media-amazon.com/images/I/81mxzNPIvVL._AC_SX679_.jpg",
+			"questionDescription": "Toy red tricycle",
+			"questionTimer": 15
+		},
+		{
+			"questionID": "33",
+			"category": "Movies and TV",
+			"questionText": "What actor plays the titular Candyman and Death in the Final Destination franchise?",
+			"questionImageAddress": "https://m.media-amazon.com/images/I/513URLtFNlL._AC_SX679_.jpg",
+			"questionDescription": "Hook hand prop",
+			"questionTimer": 20
+		},
+		{
+			"questionID": "34",
+			"category": "Gaming",
+			"questionText": "In Balatro, which ante does the required score reach naneinf?",
+			"questionImageAddress": "https://miro.medium.com/v2/resize:fit:2000/format:webp/0*bZmBqtp-2-oZStH8.png",
+			"questionDescription": "NaN repeatedly on a orange background",
+			"questionTimer": 20
 		}
 	]
 }
