@@ -40,6 +40,15 @@ Sprint 3 -
   - Researched persistence
   - Added a pause menu overlay
  
+Sprint 4 -
+- Goal: Final Polishing
+  - Added background music to Game screen
+  - Limited all assests to 10mb max
+  - Ensured all files were in single folder
+  - Implemented a Selenium automated test to test the basic game loop
+  - Added a Game Logo
+  - Added instructions on Mobile Testing
+ 
 # Releases
 We did a release at the end of each sprint and they can be found on the right side Code page of the repository, or at this link:  
 https://github.com/Cavity-Crushers/Peppers-Pop-Quiz/releases
@@ -69,7 +78,7 @@ We first looked into using Expo Go to test mobile compatibility with our game, b
 5. If you want to turn the Mobile Device, press the "Rotate" icon to the right of the Screen Dimensions Text Box
 
 # Selenium Testing
-We plan to implement Selenium testing in our final sprint to automate our testing and be able to test everything. If we make it this far this will be changed from a stub to a full section for the sake of any future groups that work on this project.
+We implemented a Selenium automated test in our final sprint to automate our testing and be able to test the basic game loop each pull request.
 
 # Documentation
 Coding Standard:  
