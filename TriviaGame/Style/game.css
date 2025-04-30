@@ -1,4 +1,12 @@
 ﻿/**
+    Removed gap between window and gameZone
+*/
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/**
  * Used to limit the game zone to a specific size and style for the game.
  * 
  * #ID GameZone
@@ -6,11 +14,11 @@
 #GameZone {
     width: 400px;
     height: 400px;
-    box-sizing: border-box;
     max-width: 800px;
     max-height: 400px;
     background-color: lightblue;
     padding: 5px;
+    box-sizing: border-box;
     position: relative;
 }
 
@@ -27,8 +35,8 @@
 /* 2.  Pause button (⏸ icon) */
 #pauseBtn {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 5px;
+    right: 5px;
     padding: 4px 8px;
     border: none;
     background: #fff;
@@ -50,8 +58,8 @@
  */
 #timer {
     position: absolute;
-    top: 8px;
-    left: 10px;
+    top: 5px;
+    left: 5px;
     font-size: 16px;
     font-weight: bold;
     padding: 4px 8px;
@@ -93,6 +101,9 @@
     justify-content: center;
     align-items: center;
     z-index: 9999; /* above everything else */
+
+    width: 400px;
+    height: 400px;
 }
 
 .hidden {
@@ -105,6 +116,8 @@
     padding: 2rem 3rem;
     border-radius: 8px;
     text-align: center;
+    width: 250px;
+    height: 250px;
 }
 
     .overlay-content h1 {
@@ -128,6 +141,7 @@
 #questionImage {
     max-width: 115px;
     max-height: 115px;
+    padding-left: 142.5px;
 }
 
 /**
@@ -137,9 +151,9 @@
  */
 .answer-button {
     display: block;
-    margin: 10px 0;
-    padding: 10px;
-    width: 200px;
+    margin: 5px;
+    padding: 5px;
+    width: 380px;
     font-size: 12px;
 }
 
@@ -152,3 +166,12 @@
         outline: 3px solid #007BFF;
         background-color: #e0f0ff;
     }
+
+/**
+ * Styles the answer text with padding.
+ * 
+ * #ID questionText
+ */
+#questionText {
+    padding-top: 15px;
+}

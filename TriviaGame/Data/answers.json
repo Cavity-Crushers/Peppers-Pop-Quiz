@@ -261,14 +261,94 @@
 			"correct": "Beaver"
 		},
 		{
-			"questionID": "q26",
+			"questionID": "26",
 			"answers": [
-				"New Jersey",
-				"New York City",
-				"Nashville",
-				"Los Angeles"
+				"CSCI-1250",
+				"CSCI-3110",
+				"CSCI-3400",
+				"CSCI-4417"
 			],
-			"correct": "New Jersey"
+			"correct": "CSCI-1250"
+		},
+		{
+			"questionID": "27",
+			"answers": [
+				"Computing",
+				"Gaming",
+				"ETSU",
+				"Chemistry"
+			],
+			"correct": "Computing"
+		},
+		{
+			"questionID": "28",
+			"answers": [
+				"JEI",
+				"Enchantment's Plus",
+				"Tinker's Construct",
+				"Lucky Blocks"
+			],
+			"correct": "JEI"
+		},
+		{
+			"questionID": "29",
+			"answers": [
+				"Beaver",
+				"Kinser",
+				"Nick",
+				"Fox"
+			],
+			"correct": "Kinser"
+		},
+		{
+			"questionID": "30",
+			"answers": [
+				"20",
+				"19",
+				"18",
+				"21"
+			],
+			"correct": "21"
+		},
+		{
+			"questionID": "31",
+			"answers": [
+				"Nathan For You",
+				"The Curse",
+				"The Rehearsal",
+				"Intermation"
+			],
+			"correct": "The Rehearsal"
+		},
+		{
+			"questionID": "32",
+			"answers": [
+				"10",
+				"7",
+				"8",
+				"11"
+			],
+			"correct": "10"
+		},
+		{
+			"questionID": "33",
+			"answers": [
+				"Kieth David",
+				"Spike Lee",
+				"Danny Glover",
+				"Tony Todd"
+			],
+			"correct": "Tony Todd"
+		},
+		{
+			"questionID": "34",
+			"answers": [
+				"32",
+				"39",
+				"16",
+				"31"
+			],
+			"correct": "39"
 		}
 	]
 }

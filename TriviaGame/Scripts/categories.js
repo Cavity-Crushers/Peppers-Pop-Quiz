@@ -3,8 +3,6 @@ const questionURL = '/Data/questions.json';
 
 async function loadCategories() {
     try {
-        
-
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
         const qData = await qResponse.json();
