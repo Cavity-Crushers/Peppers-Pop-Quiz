@@ -40,6 +40,15 @@ Sprint 3 -
   - Researched persistence
   - Added a pause menu overlay
  
+Sprint 4 -
+- Goal: Final Polishing
+  - Added background music to Game screen
+  - Limited all assests to 10mb max
+  - Ensured all files were in single folder
+  - Implemented a Selenium automated test to test the basic game loop
+  - Added a Game Logo
+  - Added instructions on Mobile Testing
+ 
 # Releases
 We did a release at the end of each sprint and they can be found on the right side Code page of the repository, or at this link:  
 https://github.com/Cavity-Crushers/Peppers-Pop-Quiz/releases
