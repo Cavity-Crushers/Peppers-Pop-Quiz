@@ -1,8 +1,8 @@
 ﻿// main.js
 
 // Get the file paths of our questions and answers and create a constant floor for random
-const questionURL = './Data/questions.json';
-const answerURL = './Data/answers.json';
+const questionURL = '/Data/questions.json';
+const answerURL = '/Data/answers.json';
 const randomNumberMin = 0;
 
 // We'll store references to the buttons, correct answer, timer, correctness, and questionID
@@ -21,7 +21,7 @@ async function loadQuestionAndAnswers() {
     try {
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
-        const qData = await qResponse.json();        
+        const qData = await qResponse.json();
 
         // 2. Fetch answer JSON
         const aResponse = await fetch(answerURL);
@@ -55,7 +55,7 @@ async function loadQuestionAndAnswers() {
         }
 
         const questions = JSON.parse(localStorage.getItem('matchingQuestions'));
-        
+
         const questionText = questions[questionId].questionText;
         const questionImageAddress = questions[questionId].questionImageAddress;
         const questionDescription = questions[questionId].questionDescription;
@@ -76,6 +76,7 @@ async function loadQuestionAndAnswers() {
         const answerObj = answer[questionId];
 
         correctAnswer = answerObj.correct;
+        localStorage.setItem('correctAnswerCheck', correctAnswer);
         const answers = answerObj.answers;
 
         // 3. For each button, set the inner text to one of the answers
@@ -89,7 +90,7 @@ async function loadQuestionAndAnswers() {
         updateTimer();
         timerInterval = setInterval(updateTimer, 1000);
 
-        
+
     } catch (err) {
         console.error('Error loading question or answers:', err);
     }
@@ -149,7 +150,7 @@ function matchSelectedCategory(questions, answers) {
         const categoryIndex = Math.floor(Math.random() * (categories.length - randomNumberMin)) + randomNumberMin;
         selectedCategory = categories[categoryIndex];
     }
-    
+
     for (let i = 0; i < questions.length; i++) {
         if (selectedCategory === questions[i].category) {
             matchingCategoryQuestions.push(questions[i]);
@@ -194,21 +195,17 @@ function initializeGameData() {
 async function checkAnswer(answerText) {
     var gameScore = parseInt(localStorage.getItem('score'), 10)
     localStorage.setItem('selectedAnswer', answerText);
-    
-    if (answerText === correctAnswer)
-    {
+
+    if (answerText === correctAnswer) {
         correct = "Correct!";
         gameScore += 50;
     }
     else if (answerText === "No answer selected.") {
         correct = "You ran out of time!";
     }
-    else
-    {
+    else {
         correct = "Wrong!";
     }
-
-    secondsLeft = 0;
 
     localStorage.setItem('correct', correct);
     localStorage.setItem('score', gameScore.toString());
@@ -246,6 +243,7 @@ function updateLivesAndConsecutive(isCorrect) {
     // Save updated values
     localStorage.setItem('lives', lives.toString());
     localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
+    secondsLeft = 1;
 }
 
 // --------------------  PAUSE SYSTEM  --------------------
@@ -259,6 +257,7 @@ let isPaused = false;
  */
 function pauseGame() {
     isPaused = true;
+    playGameMusic(isPaused, false);
     document.getElementById('pauseMenu').classList.remove('hidden');
     timerDisplay.classList.add('blinking');
     timerDisplay.style.color = "blue";
@@ -270,6 +269,7 @@ function pauseGame() {
  */
 function resumeGame() {
     isPaused = false;
+    playGameMusic(isPaused, false);
     document.getElementById('pauseMenu').classList.add('hidden');
     timerDisplay.classList.remove('blinking');
     timerDisplay.style.color = "black";
@@ -284,7 +284,7 @@ function resumeGame() {
 function restartGame() {
     localStorage.clear();                // wipe everything
     saveGameViewSize();
-    window.location.href = './categories.html';
+    window.location.href = '/categories.html';
 }
 
 /*** 
@@ -294,7 +294,7 @@ function restartGame() {
 function quitGame() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './index.html';
+    window.location.href = '/index.html';
 }
 
 /**
@@ -322,7 +322,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'p') {
         e.preventDefault();
         isPaused ? resumeGame() : pauseGame();
-    } 
+    }
 });
 
 // --------------------  NAVIGATION (update)  --------------------
@@ -360,7 +360,7 @@ function setupNavigation() {
         } else if (event.key === 'Enter') {
             event.preventDefault();
             buttons[currentIndex].click();
-        } 
+        }
     });
 }
 
@@ -369,8 +369,9 @@ const timerDisplay = document.getElementById("timer");
 
 /**
  * Updates the timer every second.
+ * 
+ * @returns - If the game is paused, don't update timer
  */
-
 function updateTimer() {
     if (isPaused) { return }
 
@@ -391,6 +392,33 @@ function updateTimer() {
 }
 
 /**
+ * Used to play the intense action music when a player is trying to answer a question
+ * 
+ * Intense Dark Action Orchestra by DeVern -- https://freesound.org/s/475592/ -- License: Attribution 3.0
+ * 
+ * @param {any} resultAudio - Audio for user feedback
+ */
+let gameAudio;
+function playGameMusic(isGamePaused, isFirstLoad) {
+    // Only create the audio element once
+    if (isFirstLoad) {
+        gameAudio = new Audio("https://cdn.freesound.org/previews/475/475592_2866779-lq.mp3");
+        gameAudio.type = "audio/mpeg";
+    }
+
+    if (isGamePaused) {
+        gameAudio.pause();
+    }
+    else {
+        gameAudio.play();
+    }
+
+    gameAudio.play().catch(e => {
+        console.error("Playback failed:", e);
+    });
+}
+
+/**
  * Calls all of the functions that do not run on answer selection to initialize all variables
  */
 window.addEventListener('DOMContentLoaded', () => {
@@ -402,4 +430,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Then load the question & answers data
     loadQuestionAndAnswers();
+
+    // Then play the music
+    playGameMusic(false, true);
 });

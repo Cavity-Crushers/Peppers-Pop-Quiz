@@ -27,11 +27,11 @@ document.getElementById('score').textContent = `Score: ${score}`;
 
 // If lives <= 0, go to game over
 if (parseInt(lives, 10) <= 0) {
-    window.location.href = './gameover.html';
+    window.location.href = '/gameOver.html';
 }
 
 if (numOfAnsweredQuestions === numOfQuestions && parseInt(lives, 10) > 0) {
-    window.location.href = './win.html';
+    window.location.href = '/win.html';
 }
 
 /**
@@ -39,7 +39,7 @@ if (numOfAnsweredQuestions === numOfQuestions && parseInt(lives, 10) > 0) {
  */
 async function goToGame()
 {
-    window.location.href = './game.html';
+    window.location.href = '/game.html';
 }
 
 /**
@@ -49,7 +49,7 @@ async function goToHome()
 {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './index.html';
+    window.location.href = '/index.html';
 }
 
 /**

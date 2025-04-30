@@ -10,7 +10,6 @@
     <title>Pepper's Pop Quiz - Results</title>
     <link rel="stylesheet" href="Style/results.css">
     <link rel="icon" type="image/x-icon" href="../Data/peppers pop quiz logo.png">
-
     <!-- results.html
      Author: JL Graham
      Date: 04/09/24
@@ -33,13 +32,13 @@
 
         <!-- Button to quit and button to continue next to each other -->
         <div class="button-container">
-            <button class="redirection-button" type="button" onclick="goToGame()">Continue</button>
-            <button class="redirection-button" type="button" onclick="goToHome()">Quit</button>
+            <button id="results-continue-button" class="redirection-button" type="button" onclick="goToGame()">Continue</button>
+            <button id="results-quit-button" class="redirection-button" type="button" onclick="goToHome()">Quit</button>
         </div>
     </div>
 
     <!-- Load Scripts -->
-    <script src="scripts/view.js"></script>
-    <script src="scripts/results.js"></script>
+    <script src="/Scripts/view.js"></script>
+    <script src="/Scripts/results.js"></script>
 </body>
 </html>

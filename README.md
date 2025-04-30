@@ -60,8 +60,13 @@ If you already have Node.js installed, skip to step 3.
   a. If it says that this port is in use then choose a different port, typically increment by 1 to 8001
 8. Navigate to [http://localhost:8000/index.html] (change 8000 to whatever number you chose in the previous step) and you can play the game
 
-# Expo Go
-We plan to attempt to test the Mobile compatibility of our game with the app Expo Go. If we make it this far this will be changed from a stub to a full section for the sake of any future groups that work on this project.
+# Mobile Testing
+We first looked into using Expo Go to test mobile compatibility with our game, but this is primarily used for React Projects which this is not made with. In order to still be able to test in a Mobile like Enviornment, most Browsers allow for us to tweak our display settings in the Devtools:
+1. Launch the Project as usual and navigate to where it's hosted
+2. Press "Ctrl" + "Shift" + "C" or right click and press "inspect" to open the browser Devtools
+3. Click on the laptop and phone button on the top left of the devtools popup
+4. You should now be in Mobile Testing Mode, the average size for phones is 360x800px
+5. If you want to turn the Mobile Device, press the "Rotate" icon to the right of the Screen Dimensions Text Box
 
 # Selenium Testing
 We plan to implement Selenium testing in our final sprint to automate our testing and be able to test everything. If we make it this far this will be changed from a stub to a full section for the sake of any future groups that work on this project.

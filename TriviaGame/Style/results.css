@@ -1,3 +1,11 @@
+﻿/**
+    Removed gap between window and gameZone
+*/
+body {
+    margin: 0;
+    padding: 0;
+}
+
 /**
  * Used to limit the game zone to a specific size and style for the game.
  * 
