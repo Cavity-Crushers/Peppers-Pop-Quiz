@@ -1,8 +1,9 @@
 ﻿// main.js
 
-// Get the file paths of our questions and answers
-const questionURL = './Data/questions.json';
-const answerURL = './Data/answers.json';
+// Get the file paths of our questions and answers and create a constant floor for random
+const questionURL = '/Data/questions.json';
+const answerURL = '/Data/answers.json';
+const randomNumberMin = 0;
 
 // We'll store references to the buttons, correct answer, timer, correctness, and questionID
 let buttons = [];
@@ -20,7 +21,7 @@ async function loadQuestionAndAnswers() {
     try {
         // 1. Fetch question JSON
         const qResponse = await fetch(questionURL);
-        const qData = await qResponse.json();        
+        const qData = await qResponse.json();
 
         // 2. Fetch answer JSON
         const aResponse = await fetch(answerURL);
@@ -39,7 +40,8 @@ async function loadQuestionAndAnswers() {
             numberOfQuestions = questionsHolder.length;
             localStorage.setItem('numberOfQuestions', numberOfQuestions);
 
-            questionId = Math.floor(Math.random() * (numberOfQuestions - 1)) + 1;
+            // No floor since the floor was equal to 0, leaving comment in case it comes up at a later date that we do need a floor here
+            questionId = Math.floor(Math.random() * (numberOfQuestions));
             var answeredQuestions = [questionId];
             localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
 
@@ -49,11 +51,11 @@ async function loadQuestionAndAnswers() {
             console.log(answeredQuestions);
         } else {
             numberOfQuestions = localStorage.getItem('numberOfQuestions');
-            questionId = getRandomQuestion(0, numberOfQuestions);
+            questionId = getRandomQuestion(randomNumberMin, numberOfQuestions);
         }
 
         const questions = JSON.parse(localStorage.getItem('matchingQuestions'));
-        
+
         const questionText = questions[questionId].questionText;
         const questionImageAddress = questions[questionId].questionImageAddress;
         const questionDescription = questions[questionId].questionDescription;
@@ -74,6 +76,7 @@ async function loadQuestionAndAnswers() {
         const answerObj = answer[questionId];
 
         correctAnswer = answerObj.correct;
+        localStorage.setItem('correctAnswerCheck', correctAnswer);
         const answers = answerObj.answers;
 
         // 3. For each button, set the inner text to one of the answers
@@ -87,7 +90,7 @@ async function loadQuestionAndAnswers() {
         updateTimer();
         timerInterval = setInterval(updateTimer, 1000);
 
-        
+
     } catch (err) {
         console.error('Error loading question or answers:', err);
     }
@@ -144,10 +147,10 @@ function matchSelectedCategory(questions, answers) {
     }
 
     if (selectedCategory === "Random Category") {
-        const categoryIndex = Math.floor(Math.random() * (categories.length - 0)) + 0;
+        const categoryIndex = Math.floor(Math.random() * (categories.length - randomNumberMin)) + randomNumberMin;
         selectedCategory = categories[categoryIndex];
     }
-    
+
     for (let i = 0; i < questions.length; i++) {
         if (selectedCategory === questions[i].category) {
             matchingCategoryQuestions.push(questions[i]);
@@ -192,21 +195,17 @@ function initializeGameData() {
 async function checkAnswer(answerText) {
     var gameScore = parseInt(localStorage.getItem('score'), 10)
     localStorage.setItem('selectedAnswer', answerText);
-    
-    if (answerText === correctAnswer)
-    {
+
+    if (answerText === correctAnswer) {
         correct = "Correct!";
         gameScore += 50;
     }
     else if (answerText === "No answer selected.") {
         correct = "You ran out of time!";
     }
-    else
-    {
+    else {
         correct = "Wrong!";
     }
-
-    secondsLeft = 0;
 
     localStorage.setItem('correct', correct);
     localStorage.setItem('score', gameScore.toString());
@@ -244,6 +243,7 @@ function updateLivesAndConsecutive(isCorrect) {
     // Save updated values
     localStorage.setItem('lives', lives.toString());
     localStorage.setItem('consecutiveCorrect', consecutiveCorrect.toString());
+    secondsLeft = 1;
 }
 
 // --------------------  PAUSE SYSTEM  --------------------
@@ -284,7 +284,7 @@ function resumeGame() {
 function restartGame() {
     localStorage.clear();                // wipe everything
     saveGameViewSize();
-    window.location.href = './categories.html';
+    window.location.href = '/categories.html';
 }
 
 /*** 
@@ -294,7 +294,7 @@ function restartGame() {
 function quitGame() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './index.html';
+    window.location.href = '/index.html';
 }
 
 /**
@@ -322,7 +322,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'p') {
         e.preventDefault();
         isPaused ? resumeGame() : pauseGame();
-    } 
+    }
 });
 
 // --------------------  NAVIGATION (update)  --------------------
@@ -360,7 +360,7 @@ function setupNavigation() {
         } else if (event.key === 'Enter') {
             event.preventDefault();
             buttons[currentIndex].click();
-        } 
+        }
     });
 }
 

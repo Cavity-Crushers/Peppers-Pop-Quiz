@@ -1,5 +1,5 @@
 // categories.js
-const questionURL = './Data/questions.json';
+const questionURL = '/Data/questions.json';
 
 async function loadCategories() {
     try {
@@ -49,7 +49,7 @@ async function goToGame() {
         document.getElementById('selectionWarn').hidden = false;
     } else {
         localStorage.setItem('selectedCategory', selectedCategory.options[selectedCategory.selectedIndex].text);
-        window.location.href = './game.html';
+        window.location.href = '/game.html';
     }
 }
 
@@ -59,7 +59,7 @@ async function goToGame() {
 async function goToHome() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './index.html';   
+    window.location.href = '/index.html';   
 }
 
 /**

@@ -1,4 +1,4 @@
-﻿// gameover.js
+﻿// gameOver.js
 "use strict";
 
 restoreGameViewSize();
@@ -66,7 +66,7 @@ function getRandomGameOverMessage() {
 function goToHome() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = "./index.html";
+    window.location.href = "/index.html";
 }
 
 /***
@@ -76,7 +76,7 @@ function goToHome() {
 function playAgain() {
     localStorage.clear();
     saveGameViewSize();
-    window.location.href = './categories.html';
+    window.location.href = '/categories.html';
 }
 
 /**
